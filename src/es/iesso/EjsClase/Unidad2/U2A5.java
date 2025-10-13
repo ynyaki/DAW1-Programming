@@ -135,7 +135,7 @@ public final class U2A5 extends Impresora {
             t = r;
 
             if(n == v)
-                v++;
+                nV++;
             imprln(v + " fue introducido " + nV + " veces)");
         } while(n != 0);
     }
@@ -178,7 +178,7 @@ public final class U2A5 extends Impresora {
 
             if(n % m == 0)
                 nM++;
-            imprln("(" + nM + "múltiplos de " + m + ")");
+            imprln("(" + nM + " múltiplos de " + m + ")");
         } while(n != 0);
     }
 }
