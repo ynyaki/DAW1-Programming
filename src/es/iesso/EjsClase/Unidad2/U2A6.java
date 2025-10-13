@@ -164,14 +164,30 @@ public final class U2A6 extends Impresora {
     }
 
     private static void ej10() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
+        int suma = 0;
+        for(int j = 0; j < 8; j++)
+            suma += j;
+        imprln("Suma total = " + suma);
+        imprln("No se puede imprimir j fuera del bucle.");
     }
 
     private static void ej11() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
+        int sumEven = 0;
+        int sumOdd  = 0;
+        int j;
+        for (j = 0;  j < 8; j+=2 )
+            sumEven += j;
+        imprln(sumEven);
+        for ( j = 1; j < 8; j+=2)
+            sumOdd += j;
+        imprln(sumOdd );
+        imprln("La corrección se aplica sacando la declaración de j fuera del bucle.");
     }
 
     private static void ej12() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
+        String guess;
+        imprln("Poyo! (Guess my name!)");
+        for(guess = sc.nextLine(); guess.equals("Kirby"); guess = sc.nextLine());
+        imprln("Poyo!! (Congratulations, you guessed my name correctly!!)");
     }
 }
