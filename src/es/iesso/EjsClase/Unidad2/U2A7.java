@@ -196,21 +196,23 @@ public final class U2A7 extends Impresora {
                     impr("* ");
                 c++;
             }
+            linea();
         }
     }
 
     private static void ej8() {
         int nCero;
         imprln("Lista de los 50 primeros primos:");
-        for(int i = 50; i > 0; i--) {
+        for(int i = 1; i <= 50; i++) {
             nCero = 0;
             for(int j = 1; j <= i; j++) {
                 if(i % j == 0)
                     nCero++;
+                if(nCero > 2)
+                    break;
             }
-            if(nCero > 2)
-                break;
-            imprln("(" + i + ")");
+            if(nCero <= 2)
+                imprln("(" + i + ")");
         }
     }
 }
