@@ -2,6 +2,7 @@ package es.iesso.EjsClase.Unidad2;
 
 import es.iesso.Impresora;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public final class U2A8 extends Impresora {
@@ -85,44 +86,61 @@ public final class U2A8 extends Impresora {
         int n1;
         int n2;
         int n3;
-
         try {
-            n1 = Integer.parseInt("16.4");
-
-        } catch(NumberFormatException | NullPointerException nE) {
-            imprln(nE.getLocalizedMessage());
+            n1 = Integer.parseInt(null);
+        } catch(NullPointerException | NumberFormatException e) {
+            if(e.getClass().equals(NullPointerException.class)) {
+                imprln(Arrays.stream(e.getStackTrace()).toArray());
+            } else {
+                imprln("Error: Formato de número entero incorrecto.");
+            }
         }
-
         try {
             n2 = s.indexOf("a");
-        } catch(NullPointerException nPE) {
-            imprln("Error: " + nPE.getMessage());
+        } catch(NullPointerException | IndexOutOfBoundsException e) {
+            imprln(e.getStackTrace());
         }
         try {
             s = "hello";
             n3 = s.charAt(5);
-        } catch(IndexOutOfBoundsException iOOBE) {
-            imprln("Error: " + iOOBE.getMessage());
+        } catch(NullPointerException | IndexOutOfBoundsException e) {
+            imprln(e.getStackTrace());
         }
     }
 
     private static void ej3() {
+        double d;
+        double j;
         try {
-            double d = 0.98;
+            d = Math.random();
+            j = Math.random();
             if (d > 0.95)
                 throw new ArithmeticException(d + " está fuera de rango") ;
             imprln("El número es " + d);
-            double j = 0.44;
             if (j > 0.5)
                 throw new ArithmeticException(j + " está fuera de rango") ;
             imprln("El número es " + j);
         } catch (ArithmeticException e) {
-            imprln(e.getMessage());
+            imprln("Error: " + e.getMessage());
         }
     }
 
     private static void ej4() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
+        double d;
+        double j;
+        try {
+            d = Math.random();
+            j = Math.random();
+            if (d > 0.95)
+                throw new ArithmeticException(d + " está fuera de rango") ;
+            imprln("El número es " + d);
+            if (j > 0.5)
+                throw new ArithmeticException(j + " está fuera de rango") ;
+            imprln("El número es " + j);
+        } catch (ArithmeticException e) {
+            imprln("Error: " + e.getMessage());
+            imprln(e.getStackTrace());
+        }
     }
 
     private static void ej5() {
