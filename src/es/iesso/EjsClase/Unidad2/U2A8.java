@@ -90,7 +90,7 @@ public final class U2A8 extends Impresora {
             n1 = Integer.parseInt(null);
         } catch(NullPointerException | NumberFormatException e) {
             if(e.getClass().equals(NullPointerException.class)) {
-                imprln(Arrays.stream(e.getStackTrace()).toArray());
+                imprln(e.getStackTrace());
             } else {
                 imprln("Error: Formato de número entero incorrecto.");
             }

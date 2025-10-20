@@ -5,13 +5,13 @@ package es.iesso;
  *
  * @author Iñaki Bazán Fernández
  *
- * @version 0.1 (septiembre de 2025)
+ * @version 0.2 (octubre de 2025)
  * @since 0.1 (septiembre de 2025)
  */
 public abstract class Impresora {
 
     /**
-     * Imprime un objeto usando su propio {@link #toString toString}.
+     * Imprime un objeto usando su propio método {@link #toString toString}.
      * @param obj Objeto a representar en formato {@code String}.
      */
     public static void impr(Object obj) {
@@ -19,8 +19,8 @@ public abstract class Impresora {
     }
 
     /**
-     * Imprime un objeto usando su propio {@link #toString toString} y
-     * después hace un salto de línea.
+     * Imprime un objeto usando su propio método {@link #toString toString},
+     * y después hace un salto de línea.
      * @param obj Objeto a representar en formato {@code String}.
      */
     public static void imprln(Object obj) {
@@ -29,7 +29,7 @@ public abstract class Impresora {
 
     /**
      * Imprime un salto de línea y después un objeto usando su propio
-     * {@link #toString toString}.
+     * método {@link #toString toString}.
      * @param obj Objeto a representar en formato {@code String}.
      */
     public static void lnimpr(Object obj) {
@@ -38,8 +38,19 @@ public abstract class Impresora {
     }
 
     /**
-     * Imprime un objeto usando su propio {@link #toString toString}, y
-     * después hace un subrayado del tamaño del texto y un salto de línea.
+     * Imprime un {@code array} de objetos usando sus propios
+     * métodos {@link #toString toString}.
+     * @param obj Array de objetos, representándose cada elemento
+     * en formato {@code String}.
+     */
+    public static void imprar(Object[] obj) {
+        for(int i = 0; i < obj.length; i++)
+            System.out.println(obj[i].toString());
+    }
+
+    /**
+     * Imprime un objeto usando su propio método {@link #toString toString},
+     * y después hace un subrayado del tamaño del texto y un salto de línea.
      * @param obj Objeto a representar en formato {@code String}.
      */
     public static void imprttl(Object obj) {
@@ -66,15 +77,6 @@ public abstract class Impresora {
             System.out.println();
         }
     }
-
-    /*
-     * Redondea un número decimal y lo devuelve como {@code String}.
-     * @param num Número decimal a redondear.
-     * @param nDec N.º de cifras decimales a las que redondear.
-     *             Si es menor o igual a 0, se devuelve el número
-     *             en texto sin cifras decimales.
-     * @return Valor decimal redondeado en formato {@code String}.
-     */
 
     /**
      * Formatea un decimal {@code float}, eliminando los ceros sobrantes
