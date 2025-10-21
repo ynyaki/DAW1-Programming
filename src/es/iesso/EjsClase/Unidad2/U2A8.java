@@ -9,7 +9,7 @@ public final class U2A8 extends Impresora {
 
     private static final int N_UD = 2;
     private static final int N_ACT = 8;
-    private static final int N_EJS = 11;
+    private static final int N_EJS = 10;
 
     private static final String TITULO_ACT = "UNIDAD " + N_UD + " - ACTIVIDAD " + N_ACT;
     private static final String TITULO_EJ = "U" + N_UD + "A" + N_ACT + ". Ejercicio ";
@@ -71,8 +71,6 @@ public final class U2A8 extends Impresora {
             ej9();
         else if(n == 10)
             ej10();
-        else if(n == 11)
-            ej11();
         else
             imprln(ERR_EJ);
     }
@@ -87,24 +85,26 @@ public final class U2A8 extends Impresora {
         int n2;
         int n3;
         try {
-            n1 = Integer.parseInt(null);
+            n1 = Integer.parseInt("10,5");
         } catch(NullPointerException | NumberFormatException e) {
             if(e.getClass().equals(NullPointerException.class)) {
-                imprln(e.getStackTrace());
+                imprar(e.getStackTrace());
             } else {
                 imprln("Error: Formato de número entero incorrecto.");
             }
         }
+        linea();
         try {
             n2 = s.indexOf("a");
         } catch(NullPointerException | IndexOutOfBoundsException e) {
-            imprln(e.getStackTrace());
+            imprar(e.getStackTrace());
         }
+        linea();
         try {
             s = "hello";
             n3 = s.charAt(5);
         } catch(NullPointerException | IndexOutOfBoundsException e) {
-            imprln(e.getStackTrace());
+            imprar(e.getStackTrace());
         }
     }
 
@@ -137,37 +137,62 @@ public final class U2A8 extends Impresora {
             if (j > 0.5)
                 throw new ArithmeticException(j + " está fuera de rango") ;
             imprln("El número es " + j);
-        } catch (ArithmeticException e) {
+        } catch(ArithmeticException e) {
             imprln("Error: " + e.getMessage());
-            imprln(e.getStackTrace());
+            imprar(e.getStackTrace());
         }
     }
 
     private static void ej5() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
+        imprln("El número es 0.44");
+        imprln("0.98 está fuera de rango");
     }
 
     private static void ej6() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
+        try {
+            for(int k = 0; k < 5; k++) {
+                // Sentencia de pseudo manejo de Java
+                if (k == 0) {
+                    ArithmeticException aE = new ArithmeticException("Error: división por 0");
+                    imprln(aE.getMessage());
+                    imprar(aE.getStackTrace());
+                }
+                imprln(100 / k);
+            }
+        } catch(ArithmeticException aE) {}
     }
 
     private static void ej7() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
+        try {
+            for(int k = 0; k < 5; k++) {
+                imprln(100 / k);
+            }
+        } catch(ArithmeticException aE) {
+            imprln(aE.getMessage());
+            imprar(aE.getStackTrace());
+        }
     }
 
     private static void ej8() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
+        imprln("Entrando en el try");
+        imprln("ERROR: 1000 es muy grande");
     }
 
     private static void ej9() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
+        imprln("Entrando en el try");
+        imprln("saliendo del bloque try");
     }
 
     private static void ej10() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
-    }
-
-    private static void ej11() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
+        int x;
+        impr("Valor de x (entero): ");
+        try {
+            x = sc.nextInt();
+            sc.nextLine();
+            if(x < 0)
+                throw new Exception("ERROR: Valor negativo en la coordenada x");
+        } catch(Exception e) {
+            imprln(e.getMessage());
+        }
     }
 }
