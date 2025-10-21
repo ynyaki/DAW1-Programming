@@ -6,9 +6,10 @@ import java.util.Scanner;
 
 public final class Actividad extends Impresora {
 
-    private static final int N_UD = 0; // TODO Cambiar valor
-    private static final int N_ACT = 0; // TODO Cambiar valor
-    private static final int N_EJS = 2; // TODO Cambiar valor
+    // TODO Cambiar valores
+    private static final int N_UD = 0;
+    private static final int N_ACT = 0;
+    private static final int N_EJS = 2;
 
     private static final String TITULO_ACT = "UNIDAD " + N_UD + " - ACTIVIDAD " + N_ACT;
     private static final String TITULO_EJ = "U" + N_UD + "A" + N_ACT + ". Ejercicio ";
@@ -59,17 +60,16 @@ public final class Actividad extends Impresora {
             imprln(ERR_EJ);
     }
 
-    // TODO Añadir ejercicio propio
     private static void ej1() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
-    }
-
-    // TODO Añadir ejercicio propio
-    private static void ej2() {
         impr("Di tu frase: ");
         String frase = sc.nextLine();
         for(int i = 1; i <= 4; i++)
             imprln("¡Lo dijo! ¡\"" + frase + "\"!");
+    }
+
+    private static void ej2() {
+        imprln("¡Hola, Mundo, y a todo el que te habita!");
+        imprln("(Fin del programa)");
     }
 
     // TODO Añadir ejercicios

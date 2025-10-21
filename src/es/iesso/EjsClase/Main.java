@@ -9,7 +9,7 @@ public class Main extends Impresora {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        U2A8.mostrar(sc);
+        U2A9.mostrar(sc);
         sc.close();
     }
 }
