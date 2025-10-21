@@ -68,27 +68,82 @@ public final class U2A9 extends Impresora {
     }
 
     private static void ej1() {
+
+        imprln(imprFunc(1) + esCapicua(101));
+        imprent("101");
+        linea();
+
+        imprln(imprFunc(2) + esPrimo(119));
+        imprent("119");
+        linea();
+
+        imprln(imprFunc(3) + siguientePrimo(119));
+        imprent("119");
+        linea();
+/*
+        imprln(imprFunc(4) + digitoN(125, 1));
+        imprent(125 + ", " + 1);
+        linea();
+
+        imprln(imprFunc(5) + digitoN(125, 1));
+        imprent(125 + ", " + 1);
+        linea();
+*/
+        imprln(imprFunc(6) + voltea(221));
+        imprent("221");
+        linea();
+
         imprln(imprFunc(7) + digitoN(125, 1));
         imprent(125 + ", " + 1);
         linea();
-        /*
-        imprln(imprFunc(1));
-        imprln(imprFunc(2));
-        imprln(imprFunc(3));
-        imprln(imprFunc(4));
-        imprln(imprFunc(5));
-        imprln(imprFunc(6));
-        imprln(imprFunc(7));
-        imprln(imprFunc(8));
-        imprln(imprFunc(9));
-        imprln(imprFunc(10));
-        imprln(imprFunc(11));
-        imprln(imprFunc(12));
-        imprln(imprFunc(13));
-        imprln(imprFunc(14));
-         */
     }
 
+    // Función 1
+    private static boolean esCapicua(int n) {
+        return (n == voltea(n));
+    }
+
+    // Función 2
+    private static boolean esPrimo(int n) {
+        boolean primo = false;
+        for(int i = 2; i < n; i++)
+            if (n % i == 0) {
+                primo = true;
+                break;
+            }
+        return primo;
+    }
+
+    // Función 3
+    private static int siguientePrimo(int n) {
+        int i = n;
+        while(!esPrimo(n))
+            i++;
+        return i;
+    }
+/*
+    // Función 4
+    private static char digitoN(int n, int i) {
+        String num = Integer.toString(n);
+        return num.charAt(i);
+    }
+
+    // Función 5
+    private static char digitoN(int n, int i) {
+        String num = Integer.toString(n);
+        return num.charAt(i);
+    }
+*/
+    // Función 6
+    private static int voltea(int n) {
+        String tInic = Integer.toString(n);
+        String tFin = "";
+        for(int i = tInic.length() - 1; i > 0; i--)
+            tFin = tFin.concat(String.valueOf(tInic.charAt(i)));
+        return Integer.parseInt(tFin);
+    }
+
+    // Función 7
     private static char digitoN(int n, int i) {
         String num = Integer.toString(n);
         return num.charAt(i);

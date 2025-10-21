@@ -104,6 +104,7 @@ public class Main {
         lado = pedirInt();
         area = areaCuadrado(lado);
         System.out.println("Área del cuadrado = " + area);
+
     }
 
     private static void pedirYCalcARect() {

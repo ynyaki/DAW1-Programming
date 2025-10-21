@@ -64,6 +64,7 @@ public class Main {
     private static void ejercicio5() {
         imprttl("Ejercicio 5");
         while(true) { // Bucle infinito
+            imprln(" ********** ");
             imprln("  **********");
             imprln("*  *********");
             imprln("**  ********");
@@ -75,7 +76,6 @@ public class Main {
             imprln("********  **");
             imprln("*********  *");
             imprln("**********  ");
-            imprln(" ********** ");
         }
     }
     */
