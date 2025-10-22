@@ -95,6 +95,44 @@ public final class U2A9 extends Impresora {
         imprln(imprFunc(7) + digitoN(150, 1));
         imprent("150, 1");
         linea();
+
+        imprln(imprFunc(8) + posicionDeDigito(150, 1));
+        imprent("150, 1");
+        linea();
+
+        imprln(imprFunc(9) + quitaPorDetras(150, 1));
+        imprent("150, 1");
+        linea();
+
+        imprln(imprFunc(10) + quitaPorDetras(150, 1));
+        imprent("150, 1");
+        linea();
+
+        imprln(imprFunc(11) + pegaPorDelante(150, 1));
+        imprent("150, 1");
+        linea();
+
+        imprln(imprFunc(12) + pegaPorDetras(150, 1));
+        imprent("150, 1");
+        linea();
+
+        imprln(imprFunc(13) + digitoN(150, 1));
+        imprent("150, 1");
+        linea();
+
+        imprln(imprFunc(14) + digitoN(150, 1));
+        imprent("150, 1");
+        linea();
+
+        /*
+        case 8 -> ("posicionDeDigito");
+        case 9 -> ("quitaPorDetras");
+        case 10 -> ("quitaPorDelante");
+        case 11 -> ("pegaPorDelante");
+        case 12 -> ("pegaPorDetras");
+        case 13 -> ("trozoDeNumero");
+        case 14 -> ("juntaNumeros");
+        */
     }
 
     // Función 1
@@ -163,7 +201,7 @@ public final class U2A9 extends Impresora {
     // Función 9
     private static int quitaPorDetras(int n, int d) {
         String num = Integer.toString(n);
-        return Integer.parseInt(num.substring(0, d - 1));
+        return Integer.parseInt(num.substring(0, d));
     }
 
 
@@ -176,13 +214,13 @@ public final class U2A9 extends Impresora {
 
     // Función 11
     private static int pegaPorDetras(int n, int x) {
-        return 0;
+        return Integer.parseInt(String.valueOf(n).concat(String.valueOf(x)));
     }
 
 
     // Función 12
     private static int pegaPorDelante(int n, int x) {
-        return 0;
+        return Integer.parseInt(String.valueOf(x).concat(String.valueOf(n)));
     }
 
 
@@ -197,8 +235,6 @@ public final class U2A9 extends Impresora {
     private static String juntaNumeros(int a, int b) {
         return String.valueOf(a).concat(String.valueOf(b));
     }
-
-
 
     private static String imprFunc(int nF) {
         String txtFunc = switch(nF) {
