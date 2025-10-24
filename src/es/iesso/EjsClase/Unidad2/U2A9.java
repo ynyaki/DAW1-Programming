@@ -4,7 +4,7 @@ import es.iesso.Impresora;
 
 import java.util.Scanner;
 
-public final class U2A9 extends Impresora {
+public abstract class U2A9 extends Impresora {
 
     private static final int N_UD = 2;
     private static final int N_ACT = 9;
@@ -68,92 +68,75 @@ public final class U2A9 extends Impresora {
 
     private static void ej1() {
 
-        imprln(imprFunc(1) + esCapicua(10201));
-        imprent("101");
-        linea();
-
-        imprln(imprFunc(2) + esPrimo(113));
-        imprent("113");
-        linea();
-
-        imprln(imprFunc(3) + siguientePrimo(119));
-        imprent("119");
-        linea();
-
-        imprln(imprFunc(4) + potencia(2, 4));
-        imprent("2, 4");
-        linea();
-
-        imprln(imprFunc(5) + digitos(1000));
-        imprent("1000");
-        linea();
-
-        imprln(imprFunc(6) + voltea(221));
-        imprent("221");
-        linea();
-
-        imprln(imprFunc(7) + digitoN(150, 1));
-        imprent("150, 1");
-        linea();
-
-        imprln(imprFunc(8) + posicionDeDigito(150, 1));
-        imprent("150, 1");
-        linea();
-
-        imprln(imprFunc(9) + quitaPorDetras(150, 1));
-        imprent("150, 1");
-        linea();
-
-        imprln(imprFunc(10) + quitaPorDetras(150, 1));
-        imprent("150, 1");
-        linea();
-
-        imprln(imprFunc(11) + pegaPorDelante(150, 1));
-        imprent("150, 1");
-        linea();
-
-        imprln(imprFunc(12) + pegaPorDetras(150, 1));
-        imprent("150, 1");
-        linea();
-
-        imprln(imprFunc(13) + digitoN(150, 1));
-        imprent("150, 1");
-        linea();
-
-        imprln(imprFunc(14) + digitoN(150, 1));
-        imprent("150, 1");
-        linea();
-
-        /*
-        case 8 -> ("posicionDeDigito");
-        case 9 -> ("quitaPorDetras");
-        case 10 -> ("quitaPorDelante");
-        case 11 -> ("pegaPorDelante");
-        case 12 -> ("pegaPorDetras");
-        case 13 -> ("trozoDeNumero");
-        case 14 -> ("juntaNumeros");
-        */
+        imprFunc(esCapicua(10201), "esCapicua", "10201");
+        imprFunc(esPrimo(113), "esPrimo", "113");
+        imprFunc(siguientePrimo(119), "siguientePrimo", "119");
+        imprFunc(potencia(2, 4), "potencia", "2, 4");
+        imprFunc(digitos(1000), "digitos", "1000");
+        imprFunc(voltea(521), "voltea", "521");
+        imprFunc(digitoN(150, 1) , "digitoN", "150, 1");
+        imprFunc(posicionDeDigito(9060, 6), "posicionDeDigito", "9060, 6");
+        imprFunc(quitaPorDetras(1250, 1), "quitaPorDetras", "1250, 1");
+        imprFunc(quitaPorDelante(2305, 1), "quitaPorDelante", "2305, 1");
+        imprFunc(pegaPorDelante(9, 1234), "pegaPorDelante", "9, 1234");
+        imprFunc(pegaPorDetras(1234, 0), "pegaPorDetras", "1234, 0");
+        imprFunc(trozoDeNumero(12345, 1, 4), "trozoDeNumero", "12345, 1, 4");
+        imprFunc(juntaNumeros(123, 456), "juntaNumeros", "123, 456");
     }
 
+    private static void ej2() {
+        imprFunc(nPrimos(1, 1000), "nPrimos", "1000");
+    }
+
+    private static void ej3() {
+        imprFunc(nCapicua(1, 99999), "nCapicua", "1, 99999");
+    }
+
+    private static void ej4() {
+        imprFunc(binADec(1100000), "binADec", "1100000");
+    }
+
+    private static void ej5() {
+        imprFunc(decABin(96), "decABin", "96");
+    }
+
+    public static void ej6() {
+        imprFunc(binAOct(10000), "binAOct", "10000");
+        imprFunc(binAHex(1100000), "binAHex", "1100000");
+        imprFunc(octABin(24), "octABin", "24");
+        imprFunc(octADec(79), "octADec", "79");
+        imprFunc(decAOct(100), "decAOct", "100");
+    }
+
+    public static void imprFunc(Object res, String nomFunc, String entOrg) {
+        imprln("\"" + nomFunc + "\" ");
+        imprln("Entrada: " + entOrg);
+        imprln("Salida: " + res.toString());
+        linea();
+    }
+
+    // EJERCICIO 1
+
     // Función 1
-    private static boolean esCapicua(int n) {
+    public static boolean esCapicua(int n) {
         int m = voltea(n);
         return (n == m);
     }
 
     // Función 2
-    private static boolean esPrimo(int n) {
+    public static boolean esPrimo(int n) {
         boolean primo = true;
-        for(int i = 2; i < n; i++)
+        for(int i = 2; i < n; i++) {
             if (n % i == 0) {
                 primo = false;
                 break;
             }
+        }
         return primo;
     }
 
     // Función 3
-    private static int siguientePrimo(int n) {
+    public static int siguientePrimo(int n) {
         int i = n + 1;
         while(!esPrimo(i))
             i++;
@@ -161,7 +144,7 @@ public final class U2A9 extends Impresora {
     }
 
     // Función 4
-    private static int potencia(int n, int e) {
+    public static int potencia(int n, int e) {
         int r = n;
         for(int i = 1; i < e; i++)
             r *= n;
@@ -169,13 +152,13 @@ public final class U2A9 extends Impresora {
     }
 
     // Función 5
-    private static int digitos(int n) {
-        return (Integer.toString(n).length());
+    public static int digitos(int n) {
+        return (String.valueOf(n).length());
     }
 
     // Función 6
-    private static int voltea(int n) {
-        String tInic = Integer.toString(n);
+    public static int voltea(int n) {
+        String tInic = String.valueOf(n);
         String tFin = "";
         for(int i = tInic.length() - 1; i >= 0; i--)
             tFin = tFin.concat(String.valueOf(tInic.charAt(i)));
@@ -183,98 +166,153 @@ public final class U2A9 extends Impresora {
     }
 
     // Función 7
-    private static char digitoN(int n, int i) {
-        String num = Integer.toString(n);
-        return num.charAt(i);
+    public static char digitoN(int n, int i) {
+        return String.valueOf(n).charAt(i);
     }
 
     // Función 8
-    private static int posicionDeDigito(int n, int d) {
+    public static int posicionDeDigito(int n, int d) {
+        // TODO Terminar función
+        // TODO Hacer menú
+        char cN;
         int i = 0;
-        String nTxt = Integer.toString(n);
-        while(String.valueOf(nTxt.charAt(i)).equals(String.valueOf(d)))
+        boolean hayDig = false;
+        String nT = String.valueOf(n);
+        char cD = String.valueOf(d).charAt(0);
+        while(i < nT.length()) {
+            cN = nT.charAt(i);
+            if(cN == cD)
+                hayDig = true;
             i++;
-        return i;
+        }
+        if(hayDig)
+            return i;
+        else
+            return -1;
     }
-
 
     // Función 9
-    private static int quitaPorDetras(int n, int d) {
-        String num = Integer.toString(n);
-        return Integer.parseInt(num.substring(0, d));
+    public static int quitaPorDetras(int n, int d) {
+        String num = String.valueOf(n);
+        return Integer.parseInt(num.substring(0, num.length() - d));
     }
 
-
     // Función 10
-    private static int quitaPorDelante(int n, int d) {
-        String num = Integer.toString(n);
+    public static int quitaPorDelante(int n, int d) {
+        String num = String.valueOf(n);
         return Integer.parseInt(num.substring(d));
     }
 
-
     // Función 11
-    private static int pegaPorDetras(int n, int x) {
+    public static int pegaPorDetras(int n, int x) {
         return Integer.parseInt(String.valueOf(n).concat(String.valueOf(x)));
     }
 
-
     // Función 12
-    private static int pegaPorDelante(int n, int x) {
+    public static int pegaPorDelante(int x, int n) {
         return Integer.parseInt(String.valueOf(x).concat(String.valueOf(n)));
     }
 
-
     // Función 13
-    private static int trozoDeNumero(int n, int i, int f) {
+    public static int trozoDeNumero(int n, int i, int f) {
         String nTxt = String.valueOf(n);
         return Integer.parseInt(nTxt.substring(i, f));
     }
 
-
     // Función 14
-    private static String juntaNumeros(int a, int b) {
+    public static String juntaNumeros(int a, int b) {
         return String.valueOf(a).concat(String.valueOf(b));
     }
 
-    private static String imprFunc(int nF) {
-        String txtFunc = switch(nF) {
-            case 1 -> ("esCapicua");
-            case 2 -> ("esPrimo");
-            case 3 -> ("siguientePrimo");
-            case 4 -> ("potencia");
-            case 5 -> ("digitos");
-            case 6 -> ("voltea");
-            case 7 -> ("digitoN");
-            case 8 -> ("posicionDeDigito");
-            case 9 -> ("quitaPorDetras");
-            case 10 -> ("quitaPorDelante");
-            case 11 -> ("pegaPorDelante");
-            case 12 -> ("pegaPorDetras");
-            case 13 -> ("trozoDeNumero");
-            case 14 -> ("juntaNumeros");
-            default -> "ERROR: Impresión incorrecta a cont.";
-        };
-        return (nF + ". " + txtFunc + ": ");
+    // EJERCICIO 2
+
+    public static String nPrimos(int in, int fi) {
+        String txt = "";
+        for(int i = in; i <= fi; i++) {
+            if(esPrimo(i))
+                txt = txt.concat("(" + i + ") ");
+        }
+        if(!txt.isEmpty())
+            txt = txt.substring(0, txt.length() - 1);
+        return txt;
     }
 
-    private static void imprent(String txtIn) {
-        imprln("Entrada original: " + txtIn);
+    // EJERCICIO 3
+
+    public static String nCapicua(int in, int fi) {
+        String txt = "";
+        for(int i = in; i <= fi; i++) {
+            if(esCapicua(i))
+                txt = txt.concat("(" + i + ") ");
+        }
+        if(!txt.isEmpty())
+            txt = txt.substring(0, txt.length() - 1);
+        return txt;
     }
 
-    private static void ej2() {
+    // EJERCICIO 4
+
+    public static int binADec(int n) {
+        return baseNADec(n, 2);
     }
 
-    private static void ej3() {
+    // EJERCICIO 5
+
+    public static int decABin(int n) {
+        return decABaseN(n, 2);
     }
 
-    private static void ej4() {
+    // EJERCICIO 6
+
+    public static int binAOct(int num) {
+        return baseXABaseY(num, 2, 8);
     }
 
-    private static void ej5() {
+    public static int binAHex(int num) {
+        return baseXABaseY(num, 2, 16);
     }
 
-    private static void ej6() {
+    public static int octABin(int num) {
+        return baseXABaseY(num, 8, 2);
     }
 
-    // TODO Añadir ejercicios
+    public static int octADec(int num) {
+        return baseNADec(num, 8);
+    }
+
+    public static int decAOct(int num) {
+        return decABaseN(num, 8);
+    }
+
+    public static int baseXABaseY(int num, int x, int y) {
+        return decABaseN(baseNADec(num, x), y);
+    }
+
+    // Funciones auxiliares para E4, E5 y E6
+
+    public static int baseNADec(int num, int b) {
+        int f = 0;
+        int c = 0;
+        int dN;
+        for(int i = digitos(num) - 1; i >= 0; i--) {
+            dN = Character.getNumericValue(digitoN(num, i));
+            f += (int) (dN * Math.pow(b, c));
+            c++;
+        }
+        return f;
+    }
+
+    public static int decABaseN(int n, int b) {
+        int i = 0;
+        int f = 0;
+        int r = 0;
+        while(n > 1) {
+            r = n % b;
+            f += (int) (r * Math.pow(10, i));
+            n /= b;
+            i++;
+        }
+        f += (int) (r * Math.pow(10, i));
+        return f;
+    }
 }

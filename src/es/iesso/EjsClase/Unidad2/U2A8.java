@@ -2,10 +2,9 @@ package es.iesso.EjsClase.Unidad2;
 
 import es.iesso.Impresora;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public final class U2A8 extends Impresora {
+public abstract class U2A8 extends Impresora {
 
     private static final int N_UD = 2;
     private static final int N_ACT = 8;
