@@ -158,10 +158,10 @@ public abstract class U2A9 extends Impresora {
 
     // Función 6
     public static int voltea(int n) {
-        String tInic = String.valueOf(n);
+        String tIni = String.valueOf(n);
         String tFin = "";
-        for(int i = tInic.length() - 1; i >= 0; i--)
-            tFin = tFin.concat(String.valueOf(tInic.charAt(i)));
+        for(int i = tIni.length() - 1; i >= 0; i--)
+            tFin = tFin.concat(String.valueOf(tIni.charAt(i)));
         return Integer.parseInt(tFin);
     }
 
@@ -172,20 +172,19 @@ public abstract class U2A9 extends Impresora {
 
     // Función 8
     public static int posicionDeDigito(int n, int d) {
-        // TODO Terminar función
-        // TODO Hacer menú
         char cN;
         int i = 0;
-        boolean hayDig = false;
+        boolean isDig = false;
         String nT = String.valueOf(n);
         char cD = String.valueOf(d).charAt(0);
-        while(i < nT.length()) {
+        while(!isDig && i < nT.length()) {
             cN = nT.charAt(i);
             if(cN == cD)
-                hayDig = true;
-            i++;
+                isDig = true;
+            else
+                i++;
         }
-        if(hayDig)
+        if(isDig)
             return i;
         else
             return -1;
