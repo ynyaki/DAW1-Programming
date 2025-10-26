@@ -3,7 +3,17 @@ package es.iesso.Entregar.U2A9;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main {
+// TODO Probar todas las funciones y casos límite (con checklist)
+// TODO Preparar ejemplos en un TXT
+// TODO Ejecutar ejemplos y guardar en PDF
+// TODO Copiar JAVA y quitar link al package
+
+/**
+ * Ejercicio 1 de la Actividad 9 de la Unidad 2 de Programación,
+ * por Iñaki Bazán Fernández,
+ * DAW (1º J), IES Severo Ochoa, Elche.
+ */
+public abstract class Main {
 
     private static final int ERROR = -1;
     private static final int SALIR = 0;
@@ -12,12 +22,12 @@ public class Main {
     private static boolean seguir = true;
     private static boolean hayErrInput = false;
 
-    public static void main(String[] args) {
+    static void main() {
         int opcion;
         imprTitulo();
         while(seguir) {
             imprMenu();
-            opcion = introOpcion();
+            opcion = introOpcionMenu();
             seguir = ejecOpcion(opcion);
         }
         sc.close();
@@ -25,14 +35,14 @@ public class Main {
 
     private static void imprTitulo() {
         System.out.println();
-        System.out.println("FUNCIONES");
-        System.out.println("---------");
+        System.out.println("FUNCIONES CON NÚMEROS NATURALES");
+        System.out.println("-------------------------------");
         System.out.println();
     }
 
     private static void imprMenu() {
         System.out.println("Opciones disponibles:");
-        System.out.println("0. Salir del programa");
+        System.out.println("0.  Salir del programa");
         System.out.println("1.  Es capicúa");
         System.out.println("2.  Es primo");
         System.out.println("3.  Siguiente primo");
@@ -48,22 +58,6 @@ public class Main {
         System.out.println("13. Trozo de núm.");
         System.out.println("14. Juntar núms.");
         System.out.println();
-        System.out.print("Introduzca su opción: ");
-    }
-
-    private static int introOpcion() {
-        int opcion = -1;
-        hayErrInput = false;
-        try {
-            opcion = sc.nextInt();
-        } catch(InputMismatchException iME) {
-            hayErrInput = true;
-            System.out.println();
-            System.out.println("Error: el valor introducido no es un número entero");
-        }
-        sc.nextLine();
-        System.out.println();
-        return opcion;
     }
 
     private static boolean ejecOpcion(int opcion) {
@@ -125,65 +119,224 @@ public class Main {
         return true;
     }
 
-    private static int pedirInt(String in, String txt) {
-        return 0;
+    private static int introOpcionMenu() {
+        int n;
+        System.out.print("Introduzca su opción: ");
+        n = scanNat();
+        if(!hayErrInput)
+            System.out.println();
+        return n;
     }
 
+    private static int pedirNat(String txt) {
+        int n = ERROR;
+        while(n == ERROR) {
+            System.out.print("Introduzca un número natural (" + txt + "): ");
+            n = scanNat();
+        }
+        return n;
+    }
+
+    private static int pedirNat() {
+        int n = ERROR;
+        while(n == ERROR) {
+            System.out.print("Introduzca un número natural: ");
+            n = scanNat();
+        }
+        return n;
+    }
+
+    private static int scanNat() {
+        int n = ERROR;
+        hayErrInput = false;
+        try {
+            n = sc.nextInt();
+            if(n < 0)
+                throw new InputMismatchException();
+        } catch(InputMismatchException iME) {
+            hayErrInput = true;
+            System.out.println();
+            System.out.println("Error: el valor introducido no es un número natural");
+            System.out.println();
+        }
+        sc.nextLine();
+        return n;
+    }
+
+    // FUNCIONES (MENÚ)
+
+    // Función Menú 1
     private static void ejecEsCapicua() {
+        int n;
+        boolean r;
         System.out.println("¿Es un número capicúa?");
+        n = pedirNat();
+        r = esCapicua(n);
+        if(r)
+            System.out.println(n + " es capicúa");
+        else
+            System.out.println(n + " no es capicúa");
     }
 
+    // Función Menú 2
     private static void ejecEsPrimo() {
+        int n;
+        boolean r;
         System.out.println("¿Es un número primo?");
+        n = pedirNat();
+        r = esPrimo(n);
+        if(r)
+            System.out.println(n + " es primo");
+        else
+            System.out.println(n + " no es primo");
     }
 
+    // Función Menú 3
     private static void ejecSiguientePrimo() {
+        int n;
+        int r;
         System.out.println("Siguiente número primo");
+        n = pedirNat();
+        r = siguientePrimo(n);
+        System.out.println("El siguiente primo después de " + n + " es " + r);
     }
 
+    // Función Menú 4
     private static void ejecPotencia() {
+        int n;
+        int e;
+        int r;
         System.out.println("Potencia de un número");
+        n = pedirNat("base");
+        e = pedirNat("exponente");
+        r = potencia(n, e);
+        System.out.println(n + " elevado a " + e + " es " + r);
     }
 
+    // Función Menú 5
     private static void ejecDigitos() {
+        int n;
+        int r;
         System.out.println("Contar dígitos de un número");
+        n = pedirNat();
+        r = digitos(n);
+        System.out.println(n + " tiene " + r + " dígito/s");
     }
 
+    // Función Menú 6
     private static void ejecVoltea() {
+        int n;
+        int r;
         System.out.println("Voltear un número");
+        n = pedirNat();
+        r = voltea(n);
+        System.out.println(n + " volteado es " + r);
     }
 
+    // Función Menú 7
     private static void ejecDigitoN() {
+        int n;
+        int d;
+        int r;
         System.out.println("Dígito en la posición N");
+        n = pedirNat();
+        d = pedirNat("posición [1ª pos. = 0]");
+        try {
+            r = digitoN(n, d);
+            System.out.println("El dígito " + d + " del número " + n + " es " + r);
+        } catch(InputMismatchException iME) {
+            System.out.println("Error: no existe la posición " + d + " en el número " + n);
+        }
     }
 
+    // Función Menú 8
     private static void ejecPosicionDeDigito() {
+        int n;
+        int d;
+        int r;
         System.out.println("Posición del dígito N");
+        n = pedirNat();
+        d = pedirNat("dígito N");
+        r = posicionDeDigito(n, d);
+        if(r == ERROR)
+            System.out.println("El dígito " + d + " del número " + n + " está en la posición " + r);
     }
 
+    // Función Menú 9
     private static void ejecQuitaPorDetras() {
-        System.out.println("Quitar un dígito por detrás de un número");
+        int n;
+        int d;
+        int r;
+        System.out.println("Quitar N dígitos por detrás de un número");
+        n = pedirNat();
+        d = pedirNat("N");
+        r = quitaPorDetras(n, d);
+        System.out.println("El número" + n + " con " + d + " cifras menos por detrás resulta " + r);
     }
 
+    // Función Menú 10
     private static void ejecQuitaPorDelante() {
-        System.out.println("Quitar un dígito por delante de un número");
+        int n;
+        int d;
+        int r;
+        System.out.println("Quitar N dígitos por delante de un número");
+        n = pedirNat();
+        d = pedirNat("N");
+        r = quitaPorDelante(n, d);
+        System.out.println("El número" + n + " con " + d + " cifras menos por delante resulta " + r);
     }
 
+    // Función Menú 11
     private static void ejecPegaPorDetras() {
+        int n;
+        int d;
+        int r;
         System.out.println("Pegar un dígito por detrás de un número");
+        n = pedirNat();
+        d = pedirNat("solo se tomará el 1º díg.");
+        r = pegaPorDetras(n, d);
+        System.out.println("El número " + n + " más " + d + " por detrás resulta " + r);
     }
 
+    // Función Menú 12
     private static void ejecPegaPorDelante() {
+        int n;
+        int d;
+        int r;
         System.out.println("Pegar un dígito por delante de un número");
+        n = pedirNat();
+        d = pedirNat("solo se tomará el 1º díg.");
+        r = pegaPorDelante(n, d);
+        System.out.println("El número " + n + " más " + d + " por delante resulta " + r);
     }
 
+    // Función Menú 13
     private static void ejecTrozoDeNumero() {
+        int n;
+        int i;
+        int f;
+        int r;
         System.out.println("Trozo de un número");
+        n = pedirNat();
+        i = pedirNat("pos. inicial [1ª pos. = 0]");
+        f = pedirNat("pos. final [máx. = nº dígitos]");
+        r = trozoDeNumero(n, i, f);
+        System.out.println("El resultado es " + r);
     }
 
+    // Función Menú 14
     private static void ejecJuntaNumeros() {
+        int a;
+        int b;
+        int r;
         System.out.println("Juntar dos números");
+        a = pedirNat("N1");
+        b = pedirNat("N2");
+        r = juntaNumeros(a, b);
+        System.out.println("El resultado es " + r);
     }
+
+    // FUNCIONES PRINCIPALES
 
     // Función 1
     public static boolean esCapicua(int n) {
@@ -213,9 +366,14 @@ public class Main {
 
     // Función 4
     public static int potencia(int n, int e) {
-        int r = n;
-        for(int i = 1; i < e; i++)
-            r *= n;
+        int r;
+        if(e == 0)
+            r = 1;
+        else {
+            r = n;
+            for(int i = 1; i < e; i++)
+                r *= n;
+        }
         return r;
     }
 
@@ -235,7 +393,11 @@ public class Main {
 
     // Función 7
     public static char digitoN(int n, int i) {
-        return String.valueOf(n).charAt(i);
+        String nT = String.valueOf(n);
+        if(i > nT.length())
+            throw new InputMismatchException();
+        else
+            return nT.charAt(i);
     }
 
     // Función 8
@@ -247,15 +409,14 @@ public class Main {
         char cD = String.valueOf(d).charAt(0);
         while(!isDig && i < nT.length()) {
             cN = nT.charAt(i);
-            if(cN == cD)
+            if(cN == cD) {
+                i = ERROR;
                 isDig = true;
+            }
             else
                 i++;
         }
-        if(isDig)
-            return i;
-        else
-            return -1;
+        return i;
     }
 
     // Función 9
@@ -272,12 +433,16 @@ public class Main {
 
     // Función 11
     public static int pegaPorDetras(int n, int x) {
-        return Integer.parseInt(String.valueOf(n).concat(String.valueOf(x)));
+        char cX = String.valueOf(x).charAt(0);
+        String nT = String.valueOf(n);
+        return Integer.parseInt(nT.concat(String.valueOf(cX)));
     }
 
     // Función 12
     public static int pegaPorDelante(int x, int n) {
-        return Integer.parseInt(String.valueOf(x).concat(String.valueOf(n)));
+        char cX = String.valueOf(x).charAt(0);
+        String nT = String.valueOf(n);
+        return Integer.parseInt(String.valueOf(cX).concat(nT));
     }
 
     // Función 13
@@ -287,7 +452,7 @@ public class Main {
     }
 
     // Función 14
-    public static String juntaNumeros(int a, int b) {
-        return String.valueOf(a).concat(String.valueOf(b));
+    public static int juntaNumeros(int a, int b) {
+        return Integer.parseInt(String.valueOf(a).concat(String.valueOf(b)));
     }
 }
