@@ -3,8 +3,6 @@ package es.iesso.Entregar.U2A9;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// TODO Probar todas las funciones y casos límite (con checklist)
-// TODO Preparar ejemplos en un TXT
 // TODO Ejecutar ejemplos y guardar en PDF
 // TODO Copiar JAVA y quitar link al package
 
@@ -22,7 +20,7 @@ public abstract class Main {
     private static boolean seguir = true;
     private static boolean hayErrInput = false;
 
-    static void main() {
+    public static void main(String[] args) {
         int opcion;
         imprTitulo();
         while(seguir) {
@@ -55,8 +53,8 @@ public abstract class Main {
         System.out.println("10. Quitar por delante");
         System.out.println("11. Pega por detrás");
         System.out.println("12. Pega por delante");
-        System.out.println("13. Trozo de núm.");
-        System.out.println("14. Juntar núms.");
+        System.out.println("13. Trozo de número");
+        System.out.println("14. Juntar números");
         System.out.println();
     }
 
@@ -151,8 +149,13 @@ public abstract class Main {
         hayErrInput = false;
         try {
             n = sc.nextInt();
-            if(n < 0)
-                throw new InputMismatchException();
+            if(n < 0) {
+                n = ERROR;
+                hayErrInput = true;
+                System.out.println();
+                System.out.println("Error: el valor introducido debe ser entero y positivo ó 0");
+                System.out.println();
+            }
         } catch(InputMismatchException iME) {
             hayErrInput = true;
             System.out.println();
@@ -173,9 +176,9 @@ public abstract class Main {
         n = pedirNat();
         r = esCapicua(n);
         if(r)
-            System.out.println(n + " es capicúa");
+            System.out.println("El número " + n + " es capicúa");
         else
-            System.out.println(n + " no es capicúa");
+            System.out.println("El número " + n + " no es capicúa");
     }
 
     // Función Menú 2
@@ -186,9 +189,9 @@ public abstract class Main {
         n = pedirNat();
         r = esPrimo(n);
         if(r)
-            System.out.println(n + " es primo");
+            System.out.println("El número " + n + " es primo");
         else
-            System.out.println(n + " no es primo");
+            System.out.println("El número " + n + " es compuesto");
     }
 
     // Función Menú 3
@@ -210,7 +213,7 @@ public abstract class Main {
         n = pedirNat("base");
         e = pedirNat("exponente");
         r = potencia(n, e);
-        System.out.println(n + " elevado a " + e + " es " + r);
+        System.out.println("El número " + n + " elevado a " + e + " es " + r);
     }
 
     // Función Menú 5
@@ -241,12 +244,11 @@ public abstract class Main {
         System.out.println("Dígito en la posición N");
         n = pedirNat();
         d = pedirNat("posición [1ª pos. = 0]");
-        try {
-            r = digitoN(n, d);
-            System.out.println("El dígito " + d + " del número " + n + " es " + r);
-        } catch(InputMismatchException iME) {
+        r = digitoN(n, d);
+        if(r == ERROR)
             System.out.println("Error: no existe la posición " + d + " en el número " + n);
-        }
+        else
+            System.out.println("El dígito " + d + " del número " + n + " es " + r);
     }
 
     // Función Menú 8
@@ -259,7 +261,9 @@ public abstract class Main {
         d = pedirNat("dígito N");
         r = posicionDeDigito(n, d);
         if(r == ERROR)
-            System.out.println("El dígito " + d + " del número " + n + " está en la posición " + r);
+            System.out.println("Error: El dígito nº. " + d + " no está contenido dentro de " + n);
+        else
+            System.out.println("El dígito nº. " + d + " del número " + n + " está en la posición " + r);
     }
 
     // Función Menú 9
@@ -271,7 +275,10 @@ public abstract class Main {
         n = pedirNat();
         d = pedirNat("N");
         r = quitaPorDetras(n, d);
-        System.out.println("El número" + n + " con " + d + " cifras menos por detrás resulta " + r);
+        if(r == ERROR)
+            System.out.println("Error: Las cifras eliminadas (" + d + ") no pueden superar el nº. de cifras de " + n);
+        else
+            System.out.println("El número " + n + " con " + d + " cifras menos por detrás resulta " + r);
     }
 
     // Función Menú 10
@@ -283,7 +290,10 @@ public abstract class Main {
         n = pedirNat();
         d = pedirNat("N");
         r = quitaPorDelante(n, d);
-        System.out.println("El número" + n + " con " + d + " cifras menos por delante resulta " + r);
+        if(r == ERROR)
+            System.out.println("Error: El nº. de cifras eliminadas (" + d + ") no pueden superar el nº. de cifras de " + n);
+        else
+            System.out.println("El número " + n + " con " + d + " cifras menos por delante resulta " + r);
     }
 
     // Función Menú 11
@@ -295,7 +305,7 @@ public abstract class Main {
         n = pedirNat();
         d = pedirNat("solo se tomará el 1º díg.");
         r = pegaPorDetras(n, d);
-        System.out.println("El número " + n + " más " + d + " por detrás resulta " + r);
+        System.out.println("El número " + n + " más " + String.valueOf(d).charAt(0) + " por detrás resulta " + r);
     }
 
     // Función Menú 12
@@ -307,7 +317,7 @@ public abstract class Main {
         n = pedirNat();
         d = pedirNat("solo se tomará el 1º díg.");
         r = pegaPorDelante(n, d);
-        System.out.println("El número " + n + " más " + d + " por delante resulta " + r);
+        System.out.println("El número " + n + " más " + String.valueOf(d).charAt(0) + " por delante resulta " + r);
     }
 
     // Función Menú 13
@@ -320,8 +330,13 @@ public abstract class Main {
         n = pedirNat();
         i = pedirNat("pos. inicial [1ª pos. = 0]");
         f = pedirNat("pos. final [máx. = nº dígitos]");
-        r = trozoDeNumero(n, i, f);
-        System.out.println("El resultado es " + r);
+        try {
+            r = trozoDeNumero(n, i, f);
+            System.out.println("El resultado es " + r);
+        } catch(IndexOutOfBoundsException | NumberFormatException e) {
+            System.out.println("Error: los índices no pueden ser mayores que el nº. de dígitos de "
+                    + n + ", ni el 1º índice puede ser igual o mayor que el 2º");
+        }
     }
 
     // Función Menú 14
@@ -392,42 +407,45 @@ public abstract class Main {
     }
 
     // Función 7
-    public static char digitoN(int n, int i) {
+    public static int digitoN(int n, int i) {
         String nT = String.valueOf(n);
-        if(i > nT.length())
-            throw new InputMismatchException();
+        if(i >= nT.length())
+            return -1;
         else
-            return nT.charAt(i);
+            return Integer.parseInt(String.valueOf(nT.charAt(i)));
     }
 
     // Función 8
     public static int posicionDeDigito(int n, int d) {
-        char cN;
         int i = 0;
         boolean isDig = false;
         String nT = String.valueOf(n);
         char cD = String.valueOf(d).charAt(0);
         while(!isDig && i < nT.length()) {
-            cN = nT.charAt(i);
-            if(cN == cD) {
-                i = ERROR;
+            if(nT.charAt(i) == cD)
                 isDig = true;
-            }
             else
                 i++;
         }
+        if(!isDig)
+            i = -1;
         return i;
     }
 
     // Función 9
     public static int quitaPorDetras(int n, int d) {
         String num = String.valueOf(n);
-        return Integer.parseInt(num.substring(0, num.length() - d));
+        if(d >= num.length())
+            return -1;
+        else
+            return Integer.parseInt(num.substring(0, num.length() - d));
     }
 
     // Función 10
     public static int quitaPorDelante(int n, int d) {
         String num = String.valueOf(n);
+        if(d >= num.length())
+            return -1;
         return Integer.parseInt(num.substring(d));
     }
 
@@ -439,7 +457,7 @@ public abstract class Main {
     }
 
     // Función 12
-    public static int pegaPorDelante(int x, int n) {
+    public static int pegaPorDelante(int n, int x) {
         char cX = String.valueOf(x).charAt(0);
         String nT = String.valueOf(n);
         return Integer.parseInt(String.valueOf(cX).concat(nT));
@@ -447,8 +465,10 @@ public abstract class Main {
 
     // Función 13
     public static int trozoDeNumero(int n, int i, int f) {
+        int r;
         String nTxt = String.valueOf(n);
-        return Integer.parseInt(nTxt.substring(i, f));
+        r = Integer.parseInt(nTxt.substring(i, f));
+        return r;
     }
 
     // Función 14
