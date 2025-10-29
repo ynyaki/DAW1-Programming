@@ -1,15 +1,15 @@
-package es.iesso.EjsClase;
+package es.iesso.EjsClase.Unidad3.U3A1;
 
 import es.iesso.Impresora;
 
 import java.util.Scanner;
 
-public final class Actividad extends Impresora {
+public final class U3A1 extends Impresora {
 
     // TODO Cambiar valores
-    private static final int N_UD = 0;
-    private static final int N_ACT = 0;
-    private static final int N_EJS = 2;
+    private static final int N_UD = 3;
+    private static final int N_ACT = 1;
+    private static final int N_EJS = 4;
 
     private static final String TITULO_ACT = "UNIDAD " + N_UD + " - ACTIVIDAD " + N_ACT;
     private static final String TITULO_EJ = "U" + N_UD + "A" + N_ACT + ". Ejercicio ";
@@ -50,27 +50,35 @@ public final class Actividad extends Impresora {
         linea();
     }
 
-    public static void ej(int n) {
+    private static void ej(int n) {
         if(n == 1)
             ej1();
         else if(n == 2)
             ej2();
-        // TODO Añadir ejercicios
+        else if(n == 3)
+            ej3();
+        else if(n == 4)
+            ej4();
         else
             imprln(ERR_EJ);
     }
 
     private static void ej1() {
-        impr("Di tu frase: ");
-        String frase = sc.nextLine();
-        for(int i = 1; i <= 4; i++)
-            imprln("¡Lo dijo! ¡\"" + frase + "\"!");
+        Coche c = new Coche(4, 5000, 20000, "estándar", "Sorento", "gris", "Kia");
+        imprln("Modelo: " + c.getMarca() + " " + c.getModelo() + " (" + c.getColor() + ")");
+        imprln("Precio: " + c.getPrecio());
+        imprln("Peso: " + c.getPeso());
     }
 
     private static void ej2() {
-        imprln("¡Hola, Mundo, y a todo el que te habita!");
-        imprln("(Fin del programa)");
+        imprln("");
     }
 
-    // TODO Añadir ejercicios
+    private static void ej3() {
+        imprln("");
+    }
+
+    private static void ej4() {
+        imprln("");
+    }
 }

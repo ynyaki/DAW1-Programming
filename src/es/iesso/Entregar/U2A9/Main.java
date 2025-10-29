@@ -3,9 +3,6 @@ package es.iesso.Entregar.U2A9;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// TODO Ejecutar ejemplos y guardar en PDF
-// TODO Copiar JAVA y quitar link al package
-
 /**
  * Ejercicio 1 de la Actividad 9 de la Unidad 2 de Programación,
  * por Iñaki Bazán Fernández,
