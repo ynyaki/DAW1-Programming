@@ -71,11 +71,37 @@ public final class U3A1 extends Impresora {
     }
 
     private static void ej2() {
-        imprln("");
+        Calculadora calc = new Calculadora ();
+        calc.setN1(5.0);
+        calc.setN2(4);
+        imprln(calc.getN1() + " + " + calc.getN2() + " = " + calc.suma());
+        imprln(calc.getN1() + " - " + calc.getN2() + " = " + calc.resta());
+        calc.setN1(5.25);
+        calc.setN2(0);
+        imprln(calc.getN1() + " * " + calc.getN2() + " = " + calc.multiplicacion());
+        imprln(calc.getN1() + " / " + calc.getN2() + " = " + calc.division());
     }
 
     private static void ej3() {
-        imprln("");
+        Persona p = new Persona();
+        p.setNombre("");   // nombre is set to empty string
+        p.setApellido("");    // apellido is set to empty string
+        p.setEdad(10);
+        imprln("Nombre completo: " + p.getNombreCompleto());
+        imprln("¿Es adolescente? " + p.esAdolescente());
+        p.setNombre("Patri");    // nombre is set to Patri
+        p.setEdad(18);
+        imprln("Nombre completo: " + p.getNombreCompleto());
+        imprln("¿Es adolescente? " + p. esAdolescente ());
+        p.setApellido("Guerrero"); // se establece apellido a Guerrero
+        imprln("Nombre completo: " + p.getNombreCompleto());
+
+        p.setNombre("");
+        p.setApellido("Delgado");
+        p.setEdad(20);
+        imprln("Nombre completo: " + p.getNombreCompleto());
+        imprln("Edad: " + p.getEdad());
+        imprln("¿Adolescente? " + p.esAdolescente());
     }
 
     private static void ej4() {
