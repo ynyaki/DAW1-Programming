@@ -1,8 +1,10 @@
 package es.iesso.EjsClase.Unidad3.U3A1;
 
+import java.util.ArrayList;
+
 public class Pokemon {
 
-    public enum TIPO {
+    public enum Tipo {
         NORMAL,
         FUEGO,
         AGUA,
@@ -23,31 +25,9 @@ public class Pokemon {
         HADA
     }
 
-    /*
-        ⚪
-        🔥
-        💧
-        🌳
-        ✨
-        ❄️
-        👊
-        🍄
-        ⛰️
-        🌌
-        🪽
-        🌀
-        🐛
-        🪨
-        💀
-        🐉
-        🦇
-        🔧
-        🌸
-     */
-
     private final String nombreEsp;
-    private final TIPO tipo1;
-    private final TIPO tipo2;
+    private final Tipo tipo1;
+    private final Tipo tipo2;
     private final int nPokedex;
     private final float tamano;
     private final String color;
@@ -90,8 +70,8 @@ public class Pokemon {
 
     private final boolean tieneMega;
 
-    private final TIPO megaTipo1;
-    private final TIPO megaTipo2;
+    private final Tipo megaTipo1;
+    private final Tipo megaTipo2;
     private final String megaHab;
     private final int incMegaPS;
     private final int incMegaAtq;
@@ -100,18 +80,30 @@ public class Pokemon {
     private final int incMegaDefEsp;
     private final int incMegaVel;
 
-    public Pokemon(String nombreEsp, TIPO tipo1, TIPO tipo2, int nPokedex, float tamano, String color, String forma, String preevolucion, String evolucion, String mote, int nivel, int pExp, int pAmistad, String naturaleza, String habilidad, String atq1, String atq2, String atq3, String atq4, int iniPS, int iniAtq, int iniDef, int iniAtqEsp, int iniDefEsp, int iniVel, int incPS, int incAtq, int incDef, int incAtqEsp, int incDefEsp, int incVel, boolean tieneMega, TIPO megaTipo1, TIPO megaTipo2, String megaHab, int incMegaPS, int incMegaAtq, int incMegaDef, int incMegaAtqEsp, int incMegaDefEsp, int incMegaVel) {
+    public Pokemon(String nombreEsp, Tipo tipo1, Tipo tipo2, int nPokedex,
+                   float tamano, String color, String forma,
+                   String preevolucion, String evolucion, String mote,
+                   int nivel, int pExp, int pAmistad, String naturaleza,
+                   String habilidad, String atq1, String atq2, String atq3,
+                   String atq4, int iniPS, int iniAtq, int iniDef,
+                   int iniAtqEsp, int iniDefEsp, int iniVel, int incPS,
+                   int incAtq, int incDef, int incAtqEsp, int incDefEsp,
+                   int incVel, boolean tieneMega, Tipo megaTipo1,
+                   Tipo megaTipo2, String megaHab, int incMegaPS,
+                   int incMegaAtq, int incMegaDef, int incMegaAtqEsp,
+                   int incMegaDefEsp, int incMegaVel) {
+
         this.nombreEsp = nombreEsp;
         this.tipo1 = tipo1;
-        this.tipo2 = tipo2; // TODO manejar in nulo
+        this.tipo2 = tipo2;
         this.nPokedex = nPokedex;
         this.tamano = tamano;
         this.color = color;
         this.forma = forma;
-        this.preevolucion = preevolucion; // TODO manejar in nulo
-        this.evolucion = evolucion; // TODO manejar in nulo
-        this.mote = mote; // TODO manejar in nulo
-        this.nivel = nivel; // TODO Manejar subir estadísticas con nivel
+        this.preevolucion = preevolucion;
+        this.evolucion = evolucion;
+        setMote(mote);
+        this.nivel = nivel;
         this.pExp = pExp;
         this.pAmistad = pAmistad;
         this.naturaleza = naturaleza;
@@ -151,7 +143,7 @@ public class Pokemon {
         this.statVel = iniVel + nivel * incVel;
     }
 
-    public Pokemon(String nombreEsp, TIPO tipo1, TIPO tipo2, int nPokedex,
+    public Pokemon(String nombreEsp, Tipo tipo1, Tipo tipo2, int nPokedex,
                    float tamano, String color, String forma,
                    String preevolucion, String evolucion, String mote,
                    int nivel, int pExp, int pAmistad, String naturaleza,
@@ -160,6 +152,7 @@ public class Pokemon {
                    int iniAtqEsp, int iniDefEsp, int iniVel, int incPS,
                    int incAtq, int incDef, int incAtqEsp, int incDefEsp,
                    int incVel) {
+
         this(nombreEsp, tipo1, tipo2, nPokedex, tamano, color, forma,
                 preevolucion, evolucion, mote, nivel, pExp, pAmistad,
                 naturaleza, habilidad, atq1, atq2, atq3, atq4, iniPS,
@@ -172,11 +165,11 @@ public class Pokemon {
         return nombreEsp;
     }
 
-    public TIPO getTipo1() {
+    public Tipo getTipo1() {
         return tipo1;
     }
 
-    public TIPO getTipo2() {
+    public Tipo getTipo2() {
         return tipo2;
     }
 
@@ -320,11 +313,11 @@ public class Pokemon {
         return tieneMega;
     }
 
-    public TIPO getMegaTipo1() {
+    public Tipo getMegaTipo1() {
         return megaTipo1;
     }
 
-    public TIPO getMegaTipo2() {
+    public Tipo getMegaTipo2() {
         return megaTipo2;
     }
 
@@ -360,20 +353,44 @@ public class Pokemon {
         subirNiveles(1);
     }
 
-    public void subirNiveles(int n) {
-        this.statPS += this.statPS * n;
-        this.statAtq += this.statAtq * n;
-        this.statDef += this.statDef * n;
-        this.statAtqEsp += this.statAtqEsp * n;
-        this.statDefEsp += this.statDefEsp * n;
-        this.statVel += this.statVel * n;
-    }
-
     public void setMote(String mote) {
-        if(mote == null || mote.isBlank())
+        if(mote == null)
             this.mote = this.nombreEsp;
         else
             this.mote = mote;
+    }
+
+    private String getTipo(Tipo tipo) {
+        return switch(tipo) {
+            case NORMAL -> "⚪ Normal";
+            case FUEGO -> "\uD83D\uDD25 Fuego";
+            case AGUA -> "\uD83D\uDCA7 Agua";
+            case PLANTA -> "\uD83C\uDF33 Planta";
+            case ELECTRICO -> "✨ Eléctrico";
+            case HIELO -> "❄\uFE0F Hielo";
+            case LUCHA -> "\uD83D\uDC4A Lucha";
+            case VENENO -> "\uD83C\uDF44 Veneno";
+            case TIERRA -> "⛰\uFE0F Tierra";
+            case VOLADOR -> "🪽 Volador";
+            case PSIQUICO -> "\uD83C\uDF00 Psíquico";
+            case BICHO -> "\uD83D\uDC1B Bicho";
+            case ROCA -> "\uD83E\uDEA8 Roca";
+            case FANTASMA -> "\uD83D\uDC80 Fantasma";
+            case DRAGON -> "\uD83D\uDC09 Dragón";
+            case SINIESTRO -> "\uD83E\uDD87 Siniestro";
+            case ACERO -> "\uD83D\uDD27 Acero";
+            case HADA -> "\uD83C\uDF38 Hada";
+        };
+    }
+
+    public void subirNiveles(int n) {
+        this.nivel += n;
+        this.statPS += this.incPS * n;
+        this.statAtq += this.incAtq * n;
+        this.statDef += this.incDef * n;
+        this.statAtqEsp += this.incAtqEsp * n;
+        this.statDefEsp += this.incDefEsp * n;
+        this.statVel += this.incVel * n;
     }
 
     public void setNaturaleza(String naturaleza) {
@@ -400,6 +417,74 @@ public class Pokemon {
         this.atq4 = atq4;
     }
 
-    // TODO Imprimir Pokémon
-    // TODO Imprimir Megaevolución
+    public ArrayList<String> mostrarInfo() {
+        ArrayList<String> p = new ArrayList<>();
+        String tipos;
+        p.add(mote);
+        p.add("Nv. " + nivel);
+        p.add(nombreEsp + " - Nº. " + nPokedex);
+        if(tipo2 != null)
+            tipos = (getTipo(tipo1) + " " + getTipo(tipo2));
+        else
+            tipos = getTipo(tipo1);
+        p.add("Tipo: " + tipos);
+        p.add("Color: " + color);
+        p.add("Forma: " + forma);
+        if(preevolucion != null)
+            p.add("Evoluciona de: " + preevolucion);
+        if(evolucion != null)
+            p.add("Evoluciona a: " + evolucion);
+        if(tieneMega)
+            p.add("Posee megaevolución");
+        p.add("Puntos de exp.: " + pExp);
+        p.add("Puntos de amistad: " + pAmistad);
+        p.add("");
+        p.add("Naturaleza: " + naturaleza);
+        p.add("Habilidad: " + habilidad);
+        p.add("Ataques:");
+        p.add("- " + atq1);
+        p.add("- " + atq2);
+        p.add("- " + atq3);
+        p.add("- " + atq4);
+        p.add("");
+        p.add("Estadísticas:");
+        p.add("PS: " + statPS);
+        p.add("Atq.: " + statAtq);
+        p.add("Def.: " + statDef);
+        p.add("Atq. esp.: " + statAtqEsp);
+        p.add("Def. esp.: " + statDefEsp);
+        p.add("Vel.: " + statVel);
+        return p;
+    }
+
+    public ArrayList<String> mostrarInfoMega() {
+        ArrayList<String> p = new ArrayList<>();
+        String tipos;
+        p.add(mote);
+        p.add("Nv. " + nivel);
+        p.add("Mega " + nombreEsp);
+        if(megaTipo2 != null)
+            tipos = (getTipo(megaTipo1) + " " + getTipo(megaTipo2));
+        else
+            tipos = getTipo(megaTipo1);
+        p.add("Tipo: " + tipos);
+        p.add("Puntos de exp.: " + pExp);
+        p.add("Puntos de amistad: " + pAmistad);
+        p.add("");
+        p.add("Habilidad: " + megaHab);
+        p.add("Ataques:");
+        p.add("- " + atq1);
+        p.add("- " + atq2);
+        p.add("- " + atq3);
+        p.add("- " + atq4);
+        p.add("");
+        p.add("Estadísticas:");
+        p.add("PS: " + (statPS + incMegaPS));
+        p.add("Atq.: " + (statAtq + incMegaAtq));
+        p.add("Def.: " + (statDef + incMegaDef));
+        p.add("Atq. esp.: " + (statAtqEsp + incMegaAtqEsp));
+        p.add("Def. esp.: " + (statDefEsp + incMegaDefEsp));
+        p.add("Vel.: " + (statVel + incMegaVel));
+        return p;
+    }
 }

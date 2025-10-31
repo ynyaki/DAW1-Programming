@@ -105,6 +105,21 @@ public final class U3A1 extends Impresora {
     }
 
     private static void ej4() {
-        imprln("");
+
+        Pokemon p1 = new Pokemon("Meganium", Pokemon.Tipo.PLANTA, null, 3,
+                (float) 1.8, "Verde", "Cuadrúpeda", "Bayleef", null, "JEDET",
+                34, 24071, 10638, "Osada", "Espesura", "Gigadrenado",
+                "Brillo mágico", "Terratemblor", "Pantalla de luz", 80, 82,
+                100, 83, 100, 80, 4, 1, 2, 1, 2, 1, true, Pokemon.Tipo.PLANTA,
+                Pokemon.Tipo.HADA, "Clorofila",0, 10, 15, 60, 15, 0);
+
+        imprar(p1.mostrarInfo().toArray());
+        imprln("\n---\n");
+        imprar(p1.mostrarInfoMega().toArray());
+        imprln("\n---\n");
+        p1.subirNiveles(66);
+        imprar(p1.mostrarInfo().toArray());
+        imprln("\n---\n");
+        imprar(p1.mostrarInfoMega().toArray());
     }
 }
