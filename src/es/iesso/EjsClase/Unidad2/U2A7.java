@@ -49,7 +49,7 @@ public abstract class U2A7 extends Impresora {
         linea();
     }
 
-    public static void ej(int n) {
+    private static void ej(int n) {
         if(n == 1)
             ej1();
         else if(n == 2)

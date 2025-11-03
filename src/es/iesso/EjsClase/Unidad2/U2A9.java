@@ -49,7 +49,7 @@ public abstract class U2A9 extends Impresora {
         linea();
     }
 
-    public static void ej(int n) {
+    private static void ej(int n) {
         if(n == 1)
             ej1();
         else if(n == 2)
@@ -93,26 +93,43 @@ public abstract class U2A9 extends Impresora {
     }
 
     private static void ej4() {
-        imprFunc(binADec(1100000), "binADec", "1100000");
+        imprFunc(binToDec(1100001), "binToDec", "1100001");
     }
 
-    private static void ej5() {
-        imprFunc(decABin(96), "decABin", "96");
-    }
+    // EJERCICIO 4
 
-    public static void ej6() {
-        imprFunc(binAOct(10000), "binAOct", "10000");
-        imprFunc(binAHex(1100000), "binAHex", "1100000");
-        imprFunc(octABin(24), "octABin", "24");
-        imprFunc(octADec(79), "octADec", "79");
-        imprFunc(decAOct(100), "decAOct", "100");
+    public static int binToDec(int n) {
+        String nTxt = String.valueOf(n);
+        return Integer.parseInt(nTxt, 2);
     }
 
     public static void imprFunc(Object res, String nomFunc, String entOrg) {
-        imprln("\"" + nomFunc + "\" ");
+        imprln("\"" + nomFunc + "\"");
         imprln("Entrada: " + entOrg);
         imprln("Salida: " + res.toString());
         linea();
+    }
+
+    private static void ej5() {
+        imprFunc(decToBin(65), "decToBin", "65");
+    }
+
+    // EJERCICIO 5
+
+    public static int decToBin(int n) {
+        String nTxt = String.valueOf(n);
+        return Integer.valueOf(nTxt, 2);
+    }
+
+    public static void ej6() {
+        imprFunc(baseAtoBaseB(256, 10, 16), "decToHex", "256, 10, 16");
+    }
+
+    public static int baseAtoBaseB(int n, int a, int b) {
+        String nTxt = String.valueOf(n);
+        Integer nA = Integer.valueOf(nTxt, a);
+        String nATxt = String.valueOf(nA);
+        return Integer.parseInt(nATxt, b);
     }
 
     // EJERCICIO 1
@@ -231,9 +248,7 @@ public abstract class U2A9 extends Impresora {
             if(esPrimo(i))
                 txt = txt.concat("(" + i + ") ");
         }
-        if(!txt.isEmpty())
-            txt = txt.substring(0, txt.length() - 1);
-        return txt;
+        return txt.trim();
     }
 
     // EJERCICIO 3
@@ -244,50 +259,10 @@ public abstract class U2A9 extends Impresora {
             if(esCapicua(i))
                 txt = txt.concat("(" + i + ") ");
         }
-        if(!txt.isEmpty())
-            txt = txt.substring(0, txt.length() - 1);
-        return txt;
+        return txt.trim();
     }
 
-    // EJERCICIO 4
-
-    public static int binADec(int n) {
-        return baseNADec(n, 2);
-    }
-
-    // EJERCICIO 5
-
-    public static int decABin(int n) {
-        return decABaseN(n, 2);
-    }
-
-    // EJERCICIO 6
-
-    public static int binAOct(int num) {
-        return baseXABaseY(num, 2, 8);
-    }
-
-    public static int binAHex(int num) {
-        return baseXABaseY(num, 2, 16);
-    }
-
-    public static int octABin(int num) {
-        return baseXABaseY(num, 8, 2);
-    }
-
-    public static int octADec(int num) {
-        return baseNADec(num, 8);
-    }
-
-    public static int decAOct(int num) {
-        return decABaseN(num, 8);
-    }
-
-    public static int baseXABaseY(int num, int x, int y) {
-        return decABaseN(baseNADec(num, x), y);
-    }
-
-    // Funciones auxiliares para E4, E5 y E6
+    // Funciones manuales (no usar)
 
     public static int baseNADec(int num, int b) {
         int f = 0;
