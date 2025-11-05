@@ -10,9 +10,6 @@ public class Main extends Impresora {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        U2A9.imprEj(4, sc);
-        U2A9.imprEj(5, sc);
-        U2A9.imprEj(6, sc);
         sc.close();
     }
 }

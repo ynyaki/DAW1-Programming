@@ -1,15 +1,14 @@
-package es.iesso.EjsClase;
+package es.iesso.EjsClase.Unidad3.U3A2;
 
 import es.iesso.Impresora;
 
 import java.util.Scanner;
 
-public final class Actividad extends Impresora {
+public final class U3A2 extends Impresora {
 
-    // TODO Cambiar valores
-    private static final int N_UD = 0;
-    private static final int N_ACT = 0;
-    private static final int N_EJS = 2;
+    private static final int N_UD = 3;
+    private static final int N_ACT = 2;
+    private static final int N_EJS = 5;
 
     private static final String TITULO_ACT = "UNIDAD " + N_UD + " - ACTIVIDAD " + N_ACT;
     private static final String TITULO_EJ = "U" + N_UD + "A" + N_ACT + ". Ejercicio ";
@@ -50,12 +49,17 @@ public final class Actividad extends Impresora {
         linea();
     }
 
-    private static void ej(int n) {
+    public static void ej(int n) {
         if(n == 1)
             ej1();
         else if(n == 2)
             ej2();
-        // TODO Añadir ejercicios
+        else if(n == 3)
+            ej2();
+        else if(n == 4)
+            ej2();
+        else if(n == 5)
+            ej2();
         else
             imprln(ERR_EJ);
     }
@@ -68,5 +72,15 @@ public final class Actividad extends Impresora {
         // TODO Por hacer
     }
 
-    // TODO Añadir ejercicios
+    private static void ej3() {
+        // TODO Por hacer
+    }
+
+    private static void ej4() {
+        // TODO Por hacer
+    }
+
+    private static void ej5() {
+        // TODO Por hacer
+    }
 }
