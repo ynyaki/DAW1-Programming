@@ -1,5 +1,7 @@
 package es.iesso.EjsClase.Unidad3.U3A4;
 
+import java.util.ArrayList;
+
 public abstract class MetodosString {
 
     public static char caracterEnIndice(String s, int i) {
@@ -84,6 +86,23 @@ public abstract class MetodosString {
     }
 
     public static String[] dividirString(String s, int size) {
-        return null; // TODO Terminar ejercicio
+        ArrayList<String> aL = new ArrayList<>();
+        int i = 0;
+        int f = size;
+        while(i <= s.length() - size) {
+            aL.add(s.substring(i, f));
+            i += size;
+            f += size;
+            if(f > s.length())
+                f = s.length();
+        }
+        return arrayListToArray(aL);
+    }
+
+    private static String[] arrayListToArray(ArrayList<String> aL) {
+        String[] a = new String[aL.size()];
+        for (int i = 0; i < aL.size(); i++)
+            a[i] = aL.get(i);
+        return a;
     }
 }
