@@ -2,7 +2,6 @@ package es.iesso.EjsClase;
 
 import es.iesso.EjsClase.Unidad2.*;
 import es.iesso.EjsClase.Unidad3.U3A1.*;
-import es.iesso.EjsClase.Unidad3.U3A4.MetodosString;
 import es.iesso.Impresora;
 
 import java.util.Scanner;
