@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class MetodosString {
 
-    public static char caracterEnIndice(String s, int i) {
+    public static char charEnIndice(String s, int i) {
         return s.charAt(i);
     }
 
@@ -39,7 +39,7 @@ public abstract class MetodosString {
     }
 
     public static boolean contieneIgnMay(String s, String sec) {
-        return s.contains(sec);
+        return s.toLowerCase().contains(sec.toLowerCase());
     }
 
     public static boolean empiezanIgual(String s1, String s2, String sec) {
@@ -69,19 +69,24 @@ public abstract class MetodosString {
     }
 
     public static String elimCharDupl(String s) {
-        String f = s;
         for(int i = 0; i < s.length(); i++)
             for(int j = 0; j < i; j++)
                 if(s.charAt(i) == s.charAt(j))
-                    f = quitarCharEnPos(f, i);
-        return f;
+                    s = quitarCharEnPos(s, i);
+        return s;
     }
 
     public static char buscar1erCharNoRep(String s) {
-        for(int i = 0; i < s.length(); i++)
-            for(int j = 0; j < s.length(); j++)
+        int c;
+        for(int i = 0; i < s.length(); i++) {
+            c = 0;
+            for(int j = 0; j < s.length(); j++) {
                 if(i != j && s.charAt(i) == s.charAt(j))
-                    return s.charAt(i);
+                    c++;
+            }
+            if(c == 0)
+                return s.charAt(i);
+        }
         return '\n';
     }
 
