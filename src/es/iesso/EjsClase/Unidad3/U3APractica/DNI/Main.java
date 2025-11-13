@@ -1,4 +1,4 @@
-package es.iesso.Entregar.U3AD;
+package es.iesso.EjsClase.Unidad3.U3APractica.DNI;
 
 import java.util.Scanner;
 
