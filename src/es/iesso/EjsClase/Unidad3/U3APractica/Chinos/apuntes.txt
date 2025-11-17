@@ -1,0 +1,9 @@
+
+JUEGO DE LOS CHINOS
+-------------------
+
+- jugarRonda:
+    · recabar input
+    · hacer cálculo
+    · apuntar ganador
+

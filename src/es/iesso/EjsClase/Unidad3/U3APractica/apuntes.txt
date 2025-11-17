@@ -1,0 +1,8 @@
+
+JUEGO DE BLACKJACK
+------------------
+
+Requisitos:
+- 1. Jugar contra otro jugador
+- 2. Jugar contra la máquina (a implementar próximamente. No se hace en el examen)
+- 3. Salir
