@@ -78,6 +78,33 @@ public abstract class Impresora {
         }
     }
 
+    /** Imprime una regla horizontal (de 16 caracteres por defecto). */
+    public static void hrule() {
+        System.out.println();
+        System.out.println("----------------");
+        System.out.println();
+    }
+
+    /** Imprime una regla horizontal corta (de 3 caracteres por defecto). */
+    public static void shrule() {
+        System.out.println();
+        System.out.println("---");
+        System.out.println();
+    }
+
+    /**
+     * Imprime una regla horizontal de tamaño n.
+     * @param n Nº de caracteres '-' que se imprimirá como regla horizontal.
+     */
+    public static void hrule(int n) {
+        System.out.println();
+        for(int i = 0; i < n; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println();
+    }
+
     /**
      * Formatea un decimal {@code float}, eliminando los ceros sobrantes
      * (incluyendo el punto decimal si el número es equivalente

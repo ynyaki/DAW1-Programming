@@ -1,4 +1,4 @@
-package es.iesso.PrimeraEv;
+package es.iesso.Otros.PrimeraEv;
 
 import java.util.Scanner;
 

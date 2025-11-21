@@ -1,15 +1,14 @@
-package es.iesso.EjsClase;
+package es.iesso.EjsClase.Unidad4;
 
 import es.iesso.Impresora;
 
 import java.util.Scanner;
 
-public final class Actividad extends Impresora {
+public final class U4A2 extends Impresora {
 
-    // TODO Cambiar valores
-    private static final int N_UD = 0;
-    private static final int N_ACT = 0;
-    private static final int N_EJS = 10;
+    private static final int N_UD = 4;
+    private static final int N_ACT = 2;
+    private static final int N_EJS = 12;
 
     private static final String TITULO_ACT = "UNIDAD " + N_UD + " - ACTIVIDAD " + N_ACT;
     private static final String TITULO_EJ = "U" + N_UD + "A" + N_ACT + ". Ejercicio ";
@@ -17,18 +16,6 @@ public final class Actividad extends Impresora {
     private static final String ERR_EJ = "Error: Ejercicio no disponible";
 
     private static Scanner sc;
-
-    public static int getNUd() {
-        return N_UD;
-    }
-
-    public static int getNAct() {
-        return N_ACT;
-    }
-
-    public static int getNEjs() {
-        return N_EJS;
-    }
 
     public static void mostrar(Scanner scIn) {
         sc = scIn;
@@ -71,7 +58,10 @@ public final class Actividad extends Impresora {
             ej9();
         else if(n == 10)
             ej10();
-        // TODO Añadir ejercicios
+        else if(n == 11)
+            ej11();
+        else if(n == 12)
+            ej12();
         else
             imprln(ERR_EJ);
     }
@@ -116,5 +106,11 @@ public final class Actividad extends Impresora {
         // TODO Por hacer
     }
 
-    // TODO Añadir ejercicios
+    private static void ej11() {
+        // TODO Por hacer
+    }
+
+    private static void ej12() {
+        // TODO Por hacer
+    }
 }
