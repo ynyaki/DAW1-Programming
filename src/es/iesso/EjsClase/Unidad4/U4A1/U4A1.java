@@ -1,4 +1,4 @@
-package es.iesso.EjsClase.Unidad4;
+package es.iesso.EjsClase.Unidad4.U4A1;
 
 import es.iesso.Impresora;
 
@@ -6,7 +6,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public final class U4A1 extends Impresora {
+public abstract class U4A1 extends Impresora {
 
     private static final int N_UD = 4;
     private static final int N_ACT = 1;
@@ -19,7 +19,7 @@ public final class U4A1 extends Impresora {
 
     private static Scanner sc;
 
-    public static void mostrar(Scanner scIn) {
+    public static void mostrarAct(Scanner scIn) {
         sc = scIn;
         lineas(2);
         imprttl(TITULO_ACT);

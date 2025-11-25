@@ -1,4 +1,4 @@
-package es.iesso.EjsClase.Unidad3.U3APractica.Chinos;
+package es.iesso.Otros.PracticaExamen1.Chinos;
 
 public class Jugador {
 

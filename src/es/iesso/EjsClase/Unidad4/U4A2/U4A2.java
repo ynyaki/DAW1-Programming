@@ -1,10 +1,13 @@
-package es.iesso.EjsClase.Unidad4;
+package es.iesso.EjsClase.Unidad4.U4A2;
 
 import es.iesso.Impresora;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
-public final class U4A2 extends Impresora {
+import static es.iesso.EjsClase.Unidad4.U4A2.MetodosArray.*;
+
+public abstract class U4A2 extends Impresora {
 
     private static final int N_UD = 4;
     private static final int N_ACT = 2;
@@ -17,7 +20,19 @@ public final class U4A2 extends Impresora {
 
     private static Scanner sc;
 
-    public static void mostrar(Scanner scIn) {
+    public static int getNUd() {
+        return N_UD;
+    }
+
+    public static int getNAct() {
+        return N_ACT;
+    }
+
+    public static int getNEjs() {
+        return N_EJS;
+    }
+
+    public static void mostrarAct(Scanner scIn) {
         sc = scIn;
         lineas(2);
         imprttl(TITULO_ACT);
@@ -67,23 +82,36 @@ public final class U4A2 extends Impresora {
     }
 
     private static void ej1() {
-        // TODO Por hacer
+        int[] array;
+        array = pedirArray(sc);
+        linea();
+        imprarln(array);
     }
 
     private static void ej2() {
-        // TODO Por hacer
+        int[] a = {-22, 5, 19, 1, -17, 0, -1, 19, 24, -13};
+        int max = maximo(a);
+        imprarln(a);
+        imprln("Máximo: " + max);
     }
 
     private static void ej3() {
-        // TODO Por hacer
+        int[] ua = {-22, 5, 19, 1, -17, 0, -1, 19, 24, -13};
+        int[] oa = ordenar(ua);
+        imprln(Arrays.toString(ua) + " -> " + Arrays.toString(oa));
     }
 
     private static void ej4() {
-        // TODO Por hacer
+        int[] a = {-35, -13, -77, -46, -82, -2, -26};
+        int min = minimo(a);
+        imprarln(a);
+        imprln("Mínimo: " + min);
     }
 
     private static void ej5() {
-        // TODO Por hacer
+        int[] pagoSem = {987, 688, 1324, 450, 667, 801};
+        int suma = sumar(pagoSem);
+        imprln(Arrays.toString(pagoSem) + " -> Suma = " + suma);
     }
 
     private static void ej6() {

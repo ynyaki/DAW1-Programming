@@ -4,7 +4,7 @@ import es.iesso.Impresora;
 
 import java.util.Scanner;
 
-public final class U3A4 extends Impresora {
+public abstract class U3A4 extends Impresora {
 
     private static final int N_UD = 3;
     private static final int N_ACT = 4;

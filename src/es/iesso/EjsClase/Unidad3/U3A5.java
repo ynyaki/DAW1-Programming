@@ -4,7 +4,7 @@ import es.iesso.Impresora;
 
 import java.util.Scanner;
 
-public final class U3A5 extends Impresora {
+public abstract class U3A5 extends Impresora {
 
     // TODO Cambiar valores
     private static final int N_UD = 0;

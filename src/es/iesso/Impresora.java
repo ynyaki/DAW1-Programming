@@ -5,7 +5,7 @@ package es.iesso;
  *
  * @author Iñaki Bazán Fernández
  *
- * @version 0.2 (octubre de 2025)
+ * @version 0.3 (noviembre de 2025)
  * @since 0.1 (septiembre de 2025)
  */
 public abstract class Impresora {
@@ -40,12 +40,59 @@ public abstract class Impresora {
     /**
      * Imprime un {@code array} de objetos usando sus propios
      * métodos {@link #toString toString}.
-     * @param obj Array de objetos, representándose cada elemento
+     * @param objA Array de objetos, representándose cada elemento
      * en formato {@code String}.
      */
-    public static void imprar(Object[] obj) {
-        for(int i = 0; i < obj.length; i++)
-            System.out.println(obj[i].toString());
+    public static void imprar(Object[] objA) {
+        for(int i = 0; i < objA.length; i++)
+            System.out.println(objA[i].toString());
+    }
+
+    /**
+     * Imprime un {@code array} de tipo {@code int}.
+     * @param intA Array de tipo {@code int}.
+     */
+    public static void imprar(int[] intA) {
+        impr("[");
+        for(int i = 0; i < intA.length; i++) {
+            System.out.print(intA[i]);
+            if(i < intA.length - 1)
+                impr(" ");
+        }
+        impr("]");
+    }
+    /**
+     * Imprime un {@code array} de tipo {@code double}.
+     * @param doubleA Array de tipo {@code double}.
+     */
+    public static void imprar(double[] doubleA) {
+        impr("[");
+        for(int i = 0; i < doubleA.length; i++) {
+            System.out.print(doubleA[i]);
+            if(i < doubleA.length - 1)
+                impr(" ");
+        }
+        impr("]");
+    }
+
+    /**
+     * Imprime un {@code array} de tipo {@code int} y después
+     * un salto de línea.
+     * @param intA Array de tipo {@code int}.
+     */
+    public static void imprarln(int[] intA) {
+        imprar(intA);
+        System.out.println();
+    }
+
+    /**
+     * Imprime un {@code array} de tipo {@code double} y después
+     * un salto de línea.
+     * @param doubleA Array de tipo {@code double}.
+     */
+    public static void imprarln(double[] doubleA) {
+        imprar(doubleA);
+        System.out.println();
     }
 
     /**

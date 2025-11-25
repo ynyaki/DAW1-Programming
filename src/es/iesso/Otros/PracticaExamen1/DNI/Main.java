@@ -1,4 +1,4 @@
-package es.iesso.EjsClase.Unidad3.U3APractica.DNI;
+package es.iesso.Otros.PracticaExamen1.DNI;
 
 import java.util.Scanner;
 

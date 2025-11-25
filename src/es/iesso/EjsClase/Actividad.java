@@ -4,7 +4,7 @@ import es.iesso.Impresora;
 
 import java.util.Scanner;
 
-public final class Actividad extends Impresora {
+public abstract class Actividad extends Impresora {
 
     // TODO Cambiar valores
     private static final int N_UD = 0;
@@ -30,7 +30,7 @@ public final class Actividad extends Impresora {
         return N_EJS;
     }
 
-    public static void mostrar(Scanner scIn) {
+    public static void mostrarAct(Scanner scIn) {
         sc = scIn;
         lineas(2);
         imprttl(TITULO_ACT);

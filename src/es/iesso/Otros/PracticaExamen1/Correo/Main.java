@@ -1,4 +1,4 @@
-package es.iesso.EjsClase.Unidad3.U3APractica.Correo;
+package es.iesso.Otros.PracticaExamen1.Correo;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;
