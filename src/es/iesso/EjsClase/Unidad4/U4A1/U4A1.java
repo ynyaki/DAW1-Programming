@@ -84,7 +84,7 @@ public abstract class U4A1 extends Impresora {
         imprln("i) (MAL) Devuelve 9 y no cambia su valor");
         imprln("i) No compila porque se está intentando asignar un valor" +
                 " a un número y no a una variable.");
-        imprln("j) Lanza una excepción porque se está intentando acceder" +
+        imprln("j) Lanzará una excepción porque se está intentando acceder" +
                 " a una posición fuera de los límites del array.");
 
         hrule(3);
@@ -170,7 +170,7 @@ public abstract class U4A1 extends Impresora {
 
         linea();
         imprln("Comprobación:");
-        imprln("posición " + (j-1) + " valor " + array[j - 1]);
+        imprln("posición " + ( j - 1) + " valor " + array[j - 1]);
 
         j = j - 2;
         imprln("posición " + j + " valor " + array[j]);

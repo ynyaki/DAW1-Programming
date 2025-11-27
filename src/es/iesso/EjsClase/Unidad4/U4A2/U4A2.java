@@ -97,7 +97,7 @@ public abstract class U4A2 extends Impresora {
 
     private static void ej3() {
         int[] ua = {-22, 5, 19, 1, -17, 0, -1, 19, 24, -13};
-        int[] oa = ordenar(ua);
+        int[] oa = ordenarAsc(ua);
         imprln(Arrays.toString(ua) + " -> " + Arrays.toString(oa));
     }
 
@@ -115,27 +115,61 @@ public abstract class U4A2 extends Impresora {
     }
 
     private static void ej6() {
-        // TODO Por hacer
+        imprln("Los foreach han sido implementados.");
     }
 
     private static void ej7() {
-        // TODO Por hacer
+        double[] array = {};
+        double total = 0.0;
+
+        imprln("a) Sí, aunque mostrará un warning.");
+        imprln("b) Hay 0 elementos.");
+        imprln("c) Sí, ya que con foreach no se dará la excepción" +
+                " IndexOutOfBounds");
+        imprln("d) El total es 0, porque los valores del array se" +
+                " inicializan a 0 y el total también. Además," +
+                " no se ejecutará ninguna iteración del bucle.");
+
+        imprln("Comprobación:");
+        for(double valor : array)
+            total += valor;
+        imprln("El total es " + total);
     }
 
     private static void ej8() {
-        // TODO Por hacer
+        double m;
+        double[] a = {-47.39, 24.96, -1.02, 3.45, 14.21, 32.6, 19.42};
+        m = media(a);
+        imprarln(a);
+        imprln("Media = " + roundTxt(m, 2));
     }
 
     private static void ej9() {
-        // TODO Por hacer
+        int[] a = {1, 2, 3, 4};
+        int[] b = {1, 2, 3, 4};
+        int[] c = {4, 3, 2, 1};
+        imprln(Arrays.toString(a) + " == " + Arrays.toString(b) + ": "
+                + sonIguales(a, b));
+        imprln(Arrays.toString(a) + " == " + Arrays.toString(c) + ": "
+                + sonIguales(a, c));
     }
 
     private static void ej10() {
-        // TODO Por hacer
+        int[] a = {1, 2, 3, 4};
+        int[] b = {4, 3, 2, 1};
+        imprln(Arrays.toString(a) + " == " + Arrays.toString(b) + ": "
+                + sonIgualesSinOrden(a, b));
     }
 
     private static void ej11() {
-        // TODO Por hacer
+        int[] a = {1, 2, 3, 4, 5};
+        int[] b = {1, 2, 3, 4};
+        int[] c = {1, 3, 5};
+        int[] d = {1, 2, 3, 4, 5, 5};
+        imprln(Arrays.toString(a) + " ⊆ " + Arrays.toString(b) + ": "
+                + estaContenidoEn(a, b));
+        imprln(Arrays.toString(c) + " ⊆ " + Arrays.toString(d) + ": "
+                + estaContenidoEn(c, d));
     }
 
     private static void ej12() {

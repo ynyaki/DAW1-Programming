@@ -44,8 +44,8 @@ public abstract class Impresora {
      * en formato {@code String}.
      */
     public static void imprar(Object[] objA) {
-        for(int i = 0; i < objA.length; i++)
-            System.out.println(objA[i].toString());
+        for(Object o : objA)
+            System.out.println(o.toString());
     }
 
     /**
@@ -188,7 +188,8 @@ public abstract class Impresora {
      * @return Valor decimal redondeado en formato {@code String}.
      */
     public static String roundTxt(float num, int nDec) {
-        return Float.toString(roundN(num, nDec));
+        double nD = num;
+        return roundTxt(nD, nDec);
     }
 
     /**
@@ -199,7 +200,56 @@ public abstract class Impresora {
      * @return Valor decimal redondeado en formato {@code String}.
      */
     public static String roundTxt(double num, int nDec) {
-        return Double.toString(roundN(num, nDec));
+        int posP;
+        int nCifDec;
+        int nCeros;
+        String txt0;
+        String nTxt = Double.toString(num);
+
+        posP = nTxt.indexOf('.');
+        nCifDec = 0;
+        for(int i = posP; i <= nTxt.length(); i++)
+            nCifDec++;
+        nCeros = nDec - nCifDec;
+
+        txt0 = "";
+        if(nCeros > 0)
+            txt0 = txt0.concat("0");
+
+        return Double.toString(roundN(num, nDec)).concat(txt0);
+    }
+
+    /*
+    nDec < nDecR
+    6.20|4312439
+    substring(0, posP + nDec)
+
+    nDec > nDecR
+    6.12 + nCeros = nDec - nDecR
+    concat(000)
+     */
+    public static String roundTxt2(double num, int nDec) {
+        int posP;
+        int nCeros;
+        int nDecR = 0;
+        String ceros;
+        String txtR;
+        String txt = Double.toString(num);
+
+        posP = txt.indexOf('.');
+        for(int i = posP; i < txt.length(); i++)
+            nDecR++;
+        if(nDec < nDecR)
+            txtR = txt.substring(0, posP + nDecR + 1);
+        else if(nDec > nDecR) {
+            nCeros = nDec - nDecR;
+            ceros = "";
+            for(int i = 1; i <= nCeros; i++)
+                ceros = ceros.concat("0");
+            txtR = txt.concat(ceros);
+        } else
+            txtR = txt;
+        return txtR;
     }
 
     /**

@@ -11,7 +11,12 @@ public class Main extends Impresora {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        U4A2.mostrarAct(sc);
+//        U4A2.mostrarAct(sc);
+//        for(int i = 8; i <= U4A2.getNEjs(); i++)
+//            U4A2.mostrarEj(i, sc);
+        imprln(roundTxt2(6.1213128, 3));
+        imprln(roundTxt2(1.20000, 3));
+        imprln(roundTxt2(1.206, 2));
         sc.close();
     }
 }
