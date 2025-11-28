@@ -12,7 +12,7 @@ public class Main extends Impresora {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        U4A3.mostrarAct(sc);
+        U4A3.mostrarEj(3, sc);
         sc.close();
     }
 }

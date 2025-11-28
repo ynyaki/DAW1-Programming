@@ -111,7 +111,14 @@ public abstract class U4A3 extends Impresora {
     }
 
     private static void ej3() {
-        // TODO Por hacer
+        int[] a = {1, 2, 3, 2, 7, 3, 1};
+        imprarln(a);
+        ArrayOperations.printRange(a, 1, 8);
+        linea();
+        ArrayOperations.printRange(a, 2, 7);
+        linea();
+        ArrayOperations.printRange(a, 3, 3);
+        linea();
     }
 
     private static void ej4() {

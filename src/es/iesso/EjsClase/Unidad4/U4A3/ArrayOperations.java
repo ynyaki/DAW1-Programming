@@ -1,5 +1,8 @@
 package es.iesso.EjsClase.Unidad4.U4A3;
 
+import java.lang.reflect.Array;
+import java.util.InputMismatchException;
+
 /**
  * Ejercicio 2 de la Actividad 3 de la Unidad 4 de Programación,
  * por Iñaki Bazán Fernández,
@@ -98,6 +101,37 @@ public abstract class ArrayOperations {
         for(int i = 0; i < array.length; i++)
             if(array[i] % 2 != 0)
                 array[i] = 0;
+    }
+
+    // FIXME: start y end son índice, no valores del array cuyas posiciones haya que buscar
+    public static void printRange(int[] array, int start, int end) {
+        int posI = buscar(array, start);
+        int posF = buscar(array, end);
+
+        if(posI == -1)
+            throw(new InputMismatchException(
+                    "Posición inicial no encontrada en el array"));
+        else if(posF == -1)
+            throw(new InputMismatchException(
+                    "Posición final no encontrada en el array"));
+        else if(posI > posF)
+            throw(new ArrayIndexOutOfBoundsException(
+                    "El índice inicial para el array es mayor que el final"));
+
+        System.out.print("[");
+        for(int i = posI; i <= posF; i++) {
+            System.out.print(array[i]);
+            if(i < posF)
+                System.out.print(", ");
+        }
+        System.out.print("]");
+    }
+
+    private static int buscar(int[] a, int n) {
+        for(int i = 0; i < a.length; i++)
+            if(a[i] == n)
+                return i;
+        return -1;
     }
 
     private static void swap(int[] array, int a, int b) {
