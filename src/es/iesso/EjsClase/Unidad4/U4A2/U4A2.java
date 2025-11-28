@@ -173,6 +173,7 @@ public abstract class U4A2 extends Impresora {
     }
 
     private static void ej12() {
-        // TODO Por hacer
+        int[] a = {9, 3, 5, 1, 7};
+        imprln(Arrays.toString(a) + " -> " + Arrays.toString(ordenarAsc(a)));
     }
 }

@@ -5,7 +5,7 @@ package es.iesso;
  *
  * @author Iñaki Bazán Fernández
  *
- * @version 0.3 (noviembre de 2025)
+ * @version 0.4 (noviembre de 2025)
  * @since 0.1 (septiembre de 2025)
  */
 public abstract class Impresora {
@@ -201,35 +201,6 @@ public abstract class Impresora {
      */
     public static String roundTxt(double num, int nDec) {
         int posP;
-        int nCifDec;
-        int nCeros;
-        String txt0;
-        String nTxt = Double.toString(num);
-
-        posP = nTxt.indexOf('.');
-        nCifDec = 0;
-        for(int i = posP; i <= nTxt.length(); i++)
-            nCifDec++;
-        nCeros = nDec - nCifDec;
-
-        txt0 = "";
-        if(nCeros > 0)
-            txt0 = txt0.concat("0");
-
-        return Double.toString(roundN(num, nDec)).concat(txt0);
-    }
-
-    /*
-    nDec < nDecR
-    6.20|4312439
-    substring(0, posP + nDec)
-
-    nDec > nDecR
-    6.12 + nCeros = nDec - nDecR
-    concat(000)
-     */
-    public static String roundTxt2(double num, int nDec) {
-        int posP;
         int nCeros;
         int nDecR = 0;
         String ceros;
@@ -237,10 +208,10 @@ public abstract class Impresora {
         String txt = Double.toString(num);
 
         posP = txt.indexOf('.');
-        for(int i = posP; i < txt.length(); i++)
+        for(int i = posP + 1; i < txt.length(); i++)
             nDecR++;
         if(nDec < nDecR)
-            txtR = txt.substring(0, posP + nDecR + 1);
+            txtR = txt.substring(0, posP + nDec + 1);
         else if(nDec > nDecR) {
             nCeros = nDec - nDecR;
             ceros = "";

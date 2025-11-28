@@ -101,19 +101,28 @@ public abstract class MetodosArray {
         oa = ordenarAsc(a);
         ob = ordenarAsc(b);
         for(int i = 0; i < a.length; i++)
-            for(int j = 0; (j < b.length) && (nConten <= i); j++)
-                if(oa[i] == ob[j])
-                    nConten++;
+            if(oa[i] == ob[i])
+                nConten++;
         return (nConten == a.length);
+    }
+
+    public static int[] revertir(int[] a) {
+        int[] r = Arrays.copyOf(a, a.length);
+        int j = r.length - 1;
+        for(int i = 0; i < j; i++) {
+            intercambiar(r, i, j);
+            j--;
+        }
+        return r;
     }
 
     private static int[] ordenar(int[] a, String ord) {
         int[] oa = Arrays.copyOf(a, a.length);
         for(int i = 0; i < oa.length - 1; i++)
             for(int j = i + 1; j < oa.length; j++) {
-                if(ord.equals("asc") && oa[i] > oa[j])
+                if(ord.equals("asc") && (oa[i] > oa[j]))
                     intercambiar(oa, i, j);
-                else if(ord.equals("desc") && oa[i] < oa[j])
+                else if(ord.equals("desc") && (oa[i] < oa[j]))
                     intercambiar(oa, i, j);
             }
         return oa;
