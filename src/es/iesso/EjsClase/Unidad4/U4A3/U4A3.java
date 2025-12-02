@@ -1,11 +1,13 @@
 package es.iesso.EjsClase.Unidad4.U4A3;
 
+import es.iesso.EjsClase.Unidad4.U4A1.ArrayTester;
 import es.iesso.EjsClase.Unidad4.U4A2.MetodosArray;
 import es.iesso.EjsClase.Unidad4.U4A3.ArrayOperations;
 import es.iesso.Impresora;
 
 import java.lang.foreign.MemorySegment;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public abstract class U4A3 extends Impresora {
@@ -113,27 +115,65 @@ public abstract class U4A3 extends Impresora {
     private static void ej3() {
         int[] a = {1, 2, 3, 2, 7, 3, 1};
         imprarln(a);
-        ArrayOperations.printRange(a, 1, 8);
+        ArrayOperations.printRange(a, 0, 7);
         linea();
-        ArrayOperations.printRange(a, 2, 7);
+        ArrayOperations.printRange(a, 1, 6);
         linea();
-        ArrayOperations.printRange(a, 3, 3);
+        ArrayOperations.printRange(a, 2, 2);
         linea();
     }
 
     private static void ej4() {
-        // TODO Por hacer
+        int[] a = {-2, 45, -29, 77, 56, 31};
+        int[] b;
+        int[] c;
+        imprln(a);
+        imprln("max(array): " + ArrayOperations.max(a));
+        b = ArrayOperations.copy(a);
+        imprln("copy(array, copyArray)");
+        imprln("print(copyArray): " + Arrays.toString(b));
+        c = ArrayOperations.copy(a);
+        ArrayOperations.sort(c);
+        imprln("print(arrayOrdenado): " + Arrays.toString(c));
+        imprln("equalsWithoutOrder(array, arrayOrdenado): "
+                + ArrayOperations.equalsWithoutOrder(a, c));
+        imprln("equals(array, copyArray): " + ArrayOperations.equals(a, b));
+        ArrayOperations.removeOddNumbers(a);
+        imprln("removeOddNumbers(array): " + Arrays.toString(a));
+        imprln("sum(array): " + ArrayOperations.sum(a));
+        imprln("min(array): " + ArrayOperations.min(a));
+        try {
+            impr("printRange(array, 1, 4): ");
+            ArrayOperations.printRange(a, 1, 4);
+            linea();
+        } catch(IndexOutOfBoundsException | InputMismatchException e) {
+            imprln("Error: " + e.getMessage());
+            impr("printRange(array, 1, 4) no podrá ejecutarse");
+        }
+        ArrayOperations.reverse(c);
+        imprln("reverse(arrayOrdenado): " + Arrays.toString(c));
+        try {
+            impr("printRange(arrayOrdenado, 2, 5): ");
+            ArrayOperations.printRange(c, 2, 5);
+            linea();
+        } catch(IndexOutOfBoundsException | InputMismatchException e) {
+            imprln("Error: " + e.getMessage());
+            impr("printRange(arrayOrdenado, 2, 5) no podrá ejecutarse");
+        }
     }
 
     private static void ej5() {
-        // TODO Por hacer
+        int[] a = {-6, 33, 98, 10, 9};
+        imprln("deleteOneDigitNumbers: "
+                + Arrays.toString(ArrayOperations.deleteOneDigitNumbers(a)));
     }
 
     private static void ej6() {
-        // TODO Por hacer
+        int[] a = {1, 2, 3, 4};
+        imprln("searchFirst(a, 4) = " + ArrayOperations.searchFirst(a, 4));
     }
 
     private static void ej7() {
-        // TODO Por hacer
+        imprln("Ya documentada.");
     }
 }
