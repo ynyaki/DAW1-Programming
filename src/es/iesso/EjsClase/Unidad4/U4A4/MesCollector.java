@@ -5,7 +5,7 @@ public class MesCollector {
     private final int mes;
     private final int anyo;
     private final int diasMes;
-    private int[] temperatura;
+    private final int[] temperatura;
 
     public MesCollector(int mes, int anyo) {
         this.mes = mes;

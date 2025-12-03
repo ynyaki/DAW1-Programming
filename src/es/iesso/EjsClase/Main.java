@@ -6,6 +6,7 @@ import es.iesso.EjsClase.Unidad4.U4A3.*;
 import es.iesso.EjsClase.Unidad4.U4A4.*;
 import es.iesso.EjsClase.Unidad4.U4A5.*;
 import es.iesso.EjsClase.Unidad4.U4A6.*;
+import es.iesso.EjsClase.Unidad4.U4A7.*;
 
 import es.iesso.Impresora;
 
@@ -15,7 +16,7 @@ public class Main extends Impresora {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        U4A6.mostrarAct(sc);
+        U4A7.mostrarAct(sc);
         sc.close();
     }
 }
