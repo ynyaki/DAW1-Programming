@@ -97,7 +97,7 @@ public abstract class U4A6 extends Impresora {
     }
 
     private static void ej3() {
-        int[][] mEj = {{1, 0, 0}, {0, 1, 0}, {9, 0, 1}};
+        int[][] mEj = {{1, 0, 0}, {0, 1, 0}, null};
         imprln("a) m[0][2] = 4");
         imprln("   m[1][1] = 2");
         imprln("   m[1][2]: Excepción IOOB");
@@ -107,16 +107,74 @@ public abstract class U4A6 extends Impresora {
         imprln("d) m[i] = new int[n]");
         imprln("e)");
         imprMatriz(mEj);
-        linea();
+    }
+
+    private static void ej4() {
+        int[][] matriz = {null, {1, 1}, {0, 3}, {0, 1, 2, 3, 4}, null};
+        imprMatriz(matriz);
+    }
+
+    private static void ej5() {
+        int[][] int2d = new int[5][10];
+        imprMatriz(int2d);
+    }
+
+    private static void ej6() {
+        int[][] int2d = new int[5][10];
+        imprln(int2d[2][int2d.length - 1]);
+        int2d[int2d.length - 1][int2d[0].length - 1] = 100;
+        imprln(int2d[int2d.length - 1][int2d[0].length - 1]);
+    }
+
+    private static void ej7() {
+        int[][] int2d = new int[5][10];
+        int2d[int2d.length - 1][int2d[0].length - 1] = 100;
+        imprMatriz(int2d);
+    }
+
+    private static void ej8() {
+        int[][] int2d = new int[52][7];
+        imprMatriz(int2d);
+    }
+
+    private static void ej9() {
+        imprln("Método \"promedio\" añadido.");
+        imprln(promedio(new int[] {1, 2, 3, 4, 5, 6, 7}));
+    }
+
+    private static double promedio(int[] a) {
+        double p = 0;
+        for(int i = 0; i < a.length; i++)
+            p += a[i];
+        return p / a.length;
+    }
+
+    private static void ej10() {
+        imprln("Método \"promDiaSemana\" añadido.");
+    }
+
+    private static double promDiaSemana(int[][] m, int dia) {
+        double p = 0;
+        for(int i = 0; i < m.length; i++)
+            p += m[i][dia];
+        return p;
+    }
+
+    private static void ej11() {
+        imprln("int[][][] m3d = new int[x][y][z];");
     }
 
     private static void imprMatriz(int[][] m) {
         for(int i = 0; i < m.length; i++) {
-            for(int j = 0; j < m[i].length; j++) {
-                System.out.print(m[i][j]);
-                if(j < m[i].length - 1)
-                    System.out.print(" ");
+            if(m[i] != null) {
+                for(int j = 0; j < m[i].length; j++) {
+                    System.out.print(m[i][j]);
+                    if(j < m[i].length - 1)
+                        System.out.print(" ");
+                }
             }
+            else
+                System.out.println("Fila vacía");
             if(i < m.length - 1)
                 System.out.println();
         }
@@ -131,38 +189,4 @@ public abstract class U4A6 extends Impresora {
                 c[i][j] = m[i][j];
         return c;
     }
-
-    private static void ej4() {
-        // TODO Por hacer
-    }
-
-    private static void ej5() {
-        // TODO Por hacer
-    }
-
-    private static void ej6() {
-        // TODO Por hacer
-    }
-
-    private static void ej7() {
-        // TODO Por hacer
-    }
-
-    private static void ej8() {
-        // TODO Por hacer
-    }
-
-    private static void ej9() {
-        // TODO Por hacer
-    }
-
-    private static void ej10() {
-        // TODO Por hacer
-    }
-
-    private static void ej11() {
-        // TODO Por hacer
-    }
-
-    // TODO Añadir ejercicios
 }
