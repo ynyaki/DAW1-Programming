@@ -92,11 +92,14 @@ public abstract class U4A5 extends Impresora {
     }
 
     private static void ej5() {
-        imprln("Se inicializan con valor \"\", es decir, vacíos.");
+        String[] s = new String[3];
+        imprln("Respuesta: Se inicializan con valor \"\", es decir, vacíos.");
+        imprln("Comprobación: " + s[0]);
     }
 
     private static void ej6() {
-        imprln("Para cada iteración, imprimirá \"\"");
+        imprln("Para cada iteración, imprimirá \"\".");
+        imprln("Corrección: da excepción.");
     }
 
     private static void ej7() {

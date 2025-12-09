@@ -82,23 +82,38 @@ public abstract class U4A7 extends Impresora {
     }
 
     private static void ej3() {
-        // TODO Por hacer
+        int[] a = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28};
+        imprarln(a);
+        imprln("Búsqueda binaria iterativa:");
+        imprln("pos(22) = " + binarySearch(a, 22));
+        imprln("pos(21) = " + binarySearch(a, 21));
+        imprln("pos(10) = " + binarySearch(a, 10));
+        imprln("pos(2) = " + binarySearch(a, 2));
+        imprln("pos(28) = " + binarySearch(a, 28));
+        imprln("pos(14) = " + binarySearch(a, 14));
+        imprln("Búsqueda binaria recursiva:");
+        imprln("pos(22) = " + binarySearchRecursive(a, 0, a.length - 1, 22));
+        imprln("pos(21) = " + binarySearchRecursive(a, 0, a.length - 1, 21));
+        imprln("pos(10) = " + binarySearchRecursive(a, 0, a.length - 1, 10));
+        imprln("pos(2) = " + binarySearchRecursive(a, 0, a.length - 1, 2));
+        imprln("pos(28) = " + binarySearchRecursive(a, 0, a.length - 1, 28));
+        imprln("pos(14) = " + binarySearchRecursive(a, 0, a.length - 1, 14));
     }
 
     private static void ej4() {
-        // TODO Por hacer
+        imprln("Hecho en el ejercicio 3.");
     }
 
     private static void ej5() {
-        // TODO Por hacer
+        imprln("Hecho en el ejercicio 3.");
     }
 
     private static void ej6() {
-        // TODO Por hacer
+        imprln("Hecho en la entrega.");
     }
 
     private static void ej7() {
-        // TODO Por hacer
+        imprln("Algoritmo de búsqueda binaria implementado.");
     }
 
     private static int[] bubbleSort(int[] a) {
@@ -125,9 +140,43 @@ public abstract class U4A7 extends Impresora {
         for(int i = 1; i < c.length; i++)
             c[i] += c[i - 1];
 
-        // TODO: Build output array
+        // Build output array
+        for(int i = a.length - 1; i >= 0; i--) {
+            r[c[a[i]] - 1] = a[i];
+            c[a[i]]--;
+        }
 
         return r;
+    }
+
+    public static int binarySearch(int[] a, int n) {
+        int[] o = bubbleSort(ArrayOperations.copy(a));
+        int i = 0;
+        int f = o.length - 1;
+        int m;
+        while(i <= f) {
+            m = (i + f) / 2;
+            if(o[m] < n)
+                i = m + 1;
+            else if(o[m] > n)
+                f = m - 1;
+            else
+                return m;
+        }
+        return -1;
+    }
+
+    private static int binarySearchRecursive(int[] a, int i, int f, int n) {
+        int m = (f + i) / 2;
+        if(i > f)
+            return -1;
+        else if(a[m] < n)
+            i = m + 1;
+        else if(a[m] > n)
+            f = m - 1;
+        else
+            return m;
+        return binarySearchRecursive(a, i, f, n);
     }
 
     private static void swap(int[] array, int a, int b) {
