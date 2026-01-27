@@ -1,6 +1,9 @@
 package es.iesso.EjsClase.Unidad6.U6A1;
 
-import es.iesso.EjsClase.Unidad6.U6A1.U6A1E5.Pelicula;
+import es.iesso.EjsClase.Unidad6.U6A1.U6A1E5yE11.Pelicula;
+import es.iesso.EjsClase.Unidad6.U6A1.U6A1E10.B;
+import es.iesso.EjsClase.Unidad6.U6A1.U6A1E5yE11.Video;
+import es.iesso.EjsClase.Unidad6.U6A1.U6A1E5yE11.VideoMusical;
 import es.iesso.Impresora;
 
 import java.util.Scanner;
@@ -75,8 +78,6 @@ public abstract class U6A1 extends Impresora {
             ej11();
         else if(n == 12)
             ej12();
-        else if(n == 13)
-            ej13();
         else
             imprln(ERR_EJ);
     }
@@ -115,42 +116,70 @@ public abstract class U6A1 extends Impresora {
     }
 
     private static void ej5() {
-        Pelicula p = new Pelicula("El Diablo sobre Ruedas", "Steven Spielberg",
-                91, 7.3);
-        imprln("Imprimiendo objeto Película:");
-        imprln(p);
+        imprln("Implementadas Vídeo y Película.");
     }
 
     private static void ej6() {
         imprln("Si una clase fuera hija de dos clases, habría ambigüedad" +
-                " a la hora de llamar a \"super()\", \"@Override\", etc.");
+                " a la hora de llamar a \"super()\", declarar \"@Override\"," +
+                " etc.");
     }
 
     private static void ej7() {
-        // TODO Por hacer
+        imprln("a) A es hija de C.");
+        imprln("b) B es hija de C.");
+        imprln("c) E es hija de A.");
+        imprln("d) D es hija de B.");
+        imprln("e) A es madre de D.");
     }
 
     private static void ej8() {
-        // TODO Por hacer
+        imprln("Lectura -> Periódico");
+        imprln("Lectura -> Libro -> Novela");
     }
 
     private static void ej9() {
-        // TODO Por hacer
+        imprln("- Sobrecarga: crear varios métodos con el mismo nombre pero" +
+                " diferente cantidad o tipo de argumentos.");
+        imprln("- Sobreescritura: crear un nuevo método con mismo nombre" +
+                " y argumentos que otro ya heredado, haciendo uso de" +
+                " \"@Override\".");
     }
 
     private static void ej10() {
-        // TODO Por hacer
+        B b = new B();
+        imprln("a) \"new B()\" llama al constructor por defecto de la clase," +
+                " que no hace ninguna asignación.");
+        imprln("b) \"super()\" implementado en el constructor de B.");
     }
 
     private static void ej11() {
-        // TODO Por hacer
+        Video v = new Video("Me at the zoo", 1, 0);
+        Pelicula p = new Pelicula("El Diablo sobre Ruedas", "Steven Spielberg",
+                91, 7.3, 0);
+        VideoMusical vm = new VideoMusical("I Want to Break Free", "Queen",
+                "Rock", "EMI", 4, 0);
+        imprln("a) Al tener un método propio \"toString()\", imprimirá" +
+                " sus datos de manera correcta.");
+        imprln(v);
+        linea();
+        imprln("b) Al no tener un \"toString()\" propio, será usado el método" +
+                " de la clase madre, por lo que no podrá mostrar los atributos" +
+                " propios.");
+        linea();
+        imprln("c) Se añade un nuevo método sobreescrito \"toString()\" para" +
+                " la clase Película.");
+        imprln(p);
+        linea();
+        imprln("d) Implementada VideoMusical. Imprimiendo:");
+        imprln(vm);
+        linea();
+        imprln("e) El precio se implementará en la clase Vídeo, añadiendo" +
+                " este atributo a cada constructor.");
     }
 
     private static void ej12() {
-        // TODO Por hacer
-    }
-
-    private static void ej13() {
-        // TODO Por hacer
+        imprln("Clases Vehículo, Coche, CocheCombustión y CocheEléctrico" +
+                " implementadas.");
     }
 }
