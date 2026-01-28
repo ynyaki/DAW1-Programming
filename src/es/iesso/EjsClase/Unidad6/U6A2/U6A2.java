@@ -6,10 +6,9 @@ import java.util.Scanner;
 
 public abstract class U6A2 extends Impresora {
 
-    // TODO Cambiar valores
     private static final int N_UD = 6;
     private static final int N_ACT = 2;
-    private static final int N_EJS = 3;
+    private static final int N_EJS = 2;
 
     private static final String TITULO_ACT = "UNIDAD " + N_UD + " - ACTIVIDAD " + N_ACT;
     private static final String TITULO_EJ = "U" + N_UD + "A" + N_ACT + ". Ejercicio ";
@@ -55,10 +54,6 @@ public abstract class U6A2 extends Impresora {
             ej1();
         else if(n == 2)
             ej2();
-        else if(n == 4)
-            ej4();
-        else
-            imprln(ERR_EJ);
     }
 
     private static void ej1() {
@@ -68,9 +63,5 @@ public abstract class U6A2 extends Impresora {
 
     private static void ej2() {
         imprln("Clases Silla, Asiento, Sujeción y Rueda creados.");
-    }
-
-    private static void ej4() {
-        // TODO Por hacer
     }
 }

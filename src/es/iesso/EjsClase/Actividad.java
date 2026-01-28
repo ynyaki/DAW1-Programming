@@ -72,8 +72,6 @@ public abstract class Actividad extends Impresora {
         else if(n == 10)
             ej10();
         // TODO Añadir ejercicios
-        else
-            imprln(ERR_EJ);
     }
 
     private static void ej1() {
