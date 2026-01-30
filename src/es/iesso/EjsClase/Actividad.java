@@ -14,7 +14,6 @@ public abstract class Actividad extends Impresora {
     private static final String TITULO_ACT = "UNIDAD " + N_UD + " - ACTIVIDAD " + N_ACT;
     private static final String TITULO_EJ = "U" + N_UD + "A" + N_ACT + ". Ejercicio ";
     private static final String COM_ENTRAR = "(Pulsa Entrar para continuar...) ";
-    private static final String ERR_EJ = "Error: Ejercicio no disponible";
 
     private static Scanner sc;
 
@@ -33,7 +32,7 @@ public abstract class Actividad extends Impresora {
     public static void mostrarAct(Scanner scIn) {
         sc = scIn;
         lineas(2);
-        imprttl(TITULO_ACT);
+        imprttl(TITULO_ACT, '=');
         for(int i = 1; i <= N_EJS; i++)
             mostrarEj(i, sc);
     }

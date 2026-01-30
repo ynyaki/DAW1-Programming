@@ -1,4 +1,4 @@
-package es.iesso.EjsClase.Unidad6.U6A1.U6AUE12;
+package es.iesso.EjsClase.Unidad6.U6A1.U6A1E12;
 
 public class CocheElectrico extends Coche {
 

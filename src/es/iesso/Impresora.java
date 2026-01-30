@@ -110,6 +110,23 @@ public abstract class Impresora {
         System.out.println();
     }
 
+    /**
+     * Imprime un objeto usando su propio método {@link #toString toString},
+     * y después hace un subrayado del tamaño del texto y un salto de línea.
+     * El caracter pasado por parámetro será el usado para subrayar el texto.
+     * @param obj Objeto a representar en formato {@code String}.
+     * @param sub Caracter con el que se subrayará el texto.
+     */
+    public static void imprttl(Object obj, char sub) {
+        System.out.println(obj.toString());
+
+        for(int i = 0; i < obj.toString().length(); i++) {
+            System.out.print(sub);
+        }
+        System.out.println();
+        System.out.println();
+    }
+
     /** Imprime un salto de línea. */
     public static void linea() {
         System.out.println();
