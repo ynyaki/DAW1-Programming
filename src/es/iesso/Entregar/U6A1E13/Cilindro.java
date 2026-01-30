@@ -1,4 +1,4 @@
-package es.iesso.Entregar.U6A13;
+package es.iesso.Entregar.U6A1E13;
 
 public class Cilindro extends Circulo {
 
@@ -22,14 +22,14 @@ public class Cilindro extends Circulo {
 
     @Override
     public double getArea() {
-        return ((calcAreaCirculo() * 2) + (getPerimetro() * altura));
+        return (super.getArea() * 2) + (getPerimetro() * altura);
     }
 
     public double getAreaCirculo() {
-        return calcAreaCirculo();
+        return super.getArea();
     }
 
     public double getVolumen() {
-        return (calcAreaCirculo() * altura);
+        return (super.getArea() * altura);
     }
 }

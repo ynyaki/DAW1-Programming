@@ -1,4 +1,4 @@
-package es.iesso.Entregar.U6A13;
+package es.iesso.Entregar.U6A1E13;
 
 public class Circulo {
 
@@ -24,10 +24,6 @@ public class Circulo {
     }
 
     public double getArea() {
-        return calcAreaCirculo();
-    }
-
-    protected double calcAreaCirculo() {
         return (Math.PI * Math.pow(this.radio, 2));
     }
 }

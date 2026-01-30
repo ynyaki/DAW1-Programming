@@ -132,13 +132,6 @@ public abstract class Impresora {
         System.out.println();
     }
 
-    /** Imprime una regla horizontal corta (de 3 caracteres por defecto). */
-    public static void shrule() {
-        System.out.println();
-        System.out.println("---");
-        System.out.println();
-    }
-
     /**
      * Imprime una regla horizontal de tamaño n.
      * @param n Nº de caracteres '-' que se imprimirá como regla horizontal.
@@ -152,18 +145,26 @@ public abstract class Impresora {
         System.out.println();
     }
 
+    /** Imprime una regla horizontal corta (3 caracteres). */
+    public static void shrule() {
+        System.out.println();
+        System.out.println("---");
+        System.out.println();
+    }
+
     /**
-     * Formatea un decimal {@code float}, eliminando los ceros sobrantes
-     * (incluyendo el punto decimal si el número es equivalente
-     * a un entero).
+     * Redondea y formatea un decimal {@code double}, eliminando
+     * los ceros sobrantes (incluyendo el punto decimal si el número
+     * es equivalente a un entero).
      * @param num Número decimal a formatear.
+     * @param nDec Número de decimales a los que redondear.
      * @return Valor del número sin ceros sobrantes.
      */
-    public static String format(float num) {
+    public static String format(double num, int nDec) {
         if(num == (long) num)
-            return String.format("%d", (long) num);
+            return String.format("%d", (long) roundN(num, nDec));
         else
-            return String.format("%s", num);
+            return String.format("%s", roundN(num, nDec));
     }
 
     /**
@@ -178,18 +179,6 @@ public abstract class Impresora {
             return String.format("%d", (long) num);
         else
             return String.format("%s", num);
-    }
-
-    /**
-     * Redondea un decimal {@code float} y lo devuelve como {@code String}.
-     * @param num Número decimal a redondear.
-     * @param nDec N.º de cifras decimales a las que redondear.
-     *             Imprime las cifras significativas especificadas.
-     * @return Valor decimal redondeado en formato {@code String}.
-     */
-    public static String roundTxt(float num, int nDec) {
-        double nD = num;
-        return roundTxt(nD, nDec);
     }
 
     /**
@@ -221,16 +210,6 @@ public abstract class Impresora {
         } else
             txtR = txt;
         return txtR;
-    }
-
-    /**
-     * Redondea un número decimal y lo devuelve como {@code float}.
-     * @param num Número decimal a redondear.
-     * @param nDec N.º de cifras decimales a las que redondear.
-     * @return Valor decimal redondeado.
-     */
-    public static float roundN(float num, int nDec) {
-        return (float) (Math.round(num * Math.pow(10, nDec)) / Math.pow(10, nDec));
     }
 
     /**
