@@ -64,11 +64,15 @@ public abstract class U6A3 extends Impresora {
     private static void ej1() {
         imprln("a)");
         imprln("  - Imprime saludos veraniegos para Amy.");
-        imprln("  - Imprime saludos veraniegos para Amy.");
         imprln("  - Imprime una carta romántica con 3 besos para Bob.");
+        imprln("  - Dedica una felicitación por el 17 aniversario de Cindy.");
+
         linea();
-        imprln("b) Una asignación a SanValentin solo puede venir dada" +
-                " por un puntero de tipo Tarjeta o SanValentin.");
+        imprln("b)");
+        imprln("- Sí");
+        imprln("- No");
+        imprln("- Sí");
+        imprln("- No ");
     }
 
     private static void ej2() {
@@ -80,6 +84,7 @@ public abstract class U6A3 extends Impresora {
         imprln("NO");
         impr("rat = new FieldMouse()" + ": ");
         imprln("NO");
+
         impr("rod = new FieldMouse()" + ": ");
         imprln("SÍ");
         impr("mou = new Rodent()" + ": ");

@@ -178,10 +178,15 @@ public abstract class Impresora {
      * @return Valor del número sin ceros sobrantes.
      */
     public static String format(double num, int nDec) {
-        if(num == (long) num)
-            return String.format("%d", (long) roundN(num, nDec));
-        else
-            return String.format("%s", roundN(num, nDec));
+        double rN = roundN(num, nDec);
+
+        // Redondear a 9 para eliminar caso de 0.999999999...
+        if(roundN(num, 9) == (long) rN) {
+            return String.format("%d", (long) rN);
+        }
+        else {
+            return String.format("%s", rN);
+        }
     }
 
     /**
@@ -192,7 +197,9 @@ public abstract class Impresora {
      * @return Valor del número sin ceros sobrantes.
      */
     public static String format(double num) {
-        if(num == (long) num)
+
+        // Redondear a 9 para eliminar caso de 0.999999999...
+        if(roundN(num, 9) == (long) num)
             return String.format("%d", (long) num);
         else
             return String.format("%s", num);
