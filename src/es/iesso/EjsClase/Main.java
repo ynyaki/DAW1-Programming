@@ -1,7 +1,10 @@
 package es.iesso.EjsClase;
 
 import es.iesso.EjsClase.Unidad6.U6A1.*;
+import es.iesso.EjsClase.Unidad6.U6A2.*;
 import es.iesso.EjsClase.Unidad6.U6A3.*;
+import es.iesso.EjsClase.Unidad6.U6A4.*;
+import es.iesso.EjsClase.Unidad6.U6A5.*;
 
 import es.iesso.Impresora;
 
@@ -11,7 +14,7 @@ public class Main extends Impresora {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        U6A3.mostrarAct(sc);
+        U6A5.mostrarAct(sc);
         sc.close();
     }
 }

@@ -11,6 +11,10 @@ public class Libro extends Bien implements Imponible {
         this.autor = autor;
     }
 
+    public String getAutor() {
+        return autor;
+    }
+
     @Override
     public double calcularImpuesto() {
         return this.precio * Imponible.tasa;
