@@ -128,6 +128,7 @@ public abstract class U6A5 extends Impresora {
             new Estudiante("Patri", 170, 12),
             new Estudiante("Manuel", 173, 43),
             new Estudiante("Javier", 189, 72),
+            new Estudiante("Javier", 188, 32),
             new Estudiante("Javier", 188, 31),
             new Estudiante("Javier", 187, 72)
         };

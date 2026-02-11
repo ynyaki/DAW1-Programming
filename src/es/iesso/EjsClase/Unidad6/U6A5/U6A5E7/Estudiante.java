@@ -45,7 +45,14 @@ public class Estudiante implements Comparable<Estudiante> {
 
     @Override
     public int compareTo(Estudiante e) {
-        return compareByNombreEdadAltura(this, e);
+        return compareByAlturaEdad(this, e);
+    }
+
+    private static int compareByAlturaEdad(Estudiante e1, Estudiante e2) {
+        int orden = compareAltura(e1, e2);
+        if(orden == 0)
+            orden = compareEdad(e1, e2);
+        return orden;
     }
 
     private static int compareByNombreEdadAltura(Estudiante e1, Estudiante e2) {
@@ -55,13 +62,6 @@ public class Estudiante implements Comparable<Estudiante> {
             if(orden == 0)
                 orden = compareAltura(e1, e2);
         }
-        return orden;
-    }
-
-    private static int compareByAlturaEdad(Estudiante e1, Estudiante e2) {
-        int orden = compareAltura(e1, e2);
-        if(orden == 0)
-            orden = compareEdad(e1, e2);
         return orden;
     }
 
@@ -77,10 +77,10 @@ public class Estudiante implements Comparable<Estudiante> {
     }
 
     private static int compareAltura(Estudiante e1, Estudiante e2) {
-        return Integer.compare(e1.altura, e2.altura);
+        return Integer.compare(e2.altura, e1.altura);
     }
 
     private static int compareEdad(Estudiante e1, Estudiante e2) {
-        return Integer.compare(e1.edad, e2.edad);
+        return Integer.compare(e2.edad, e1.edad);
     }
 }

@@ -14,7 +14,8 @@ public class Main extends Impresora {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        U6A5.mostrarAct(sc);
+        lineas(2);
+        U6A5.mostrarEj(7, sc); // FIXME Cambiar cuando esté corregido
         sc.close();
     }
 }
