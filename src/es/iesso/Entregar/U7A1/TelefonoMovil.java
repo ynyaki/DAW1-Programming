@@ -136,8 +136,7 @@ public class TelefonoMovil {
     public ArrayList<String> toArrayListString() {
         ArrayList<String> l = new ArrayList<>();
         for(Contacto c : misContactos)
-            l.add((misContactos.indexOf(c) + 1) + ". "
-                    + c.getNombre() + " -> " + c.getNumero());
+            l.add((misContactos.indexOf(c) + 1) + ". " + c.toString());
         return l;
     }
 

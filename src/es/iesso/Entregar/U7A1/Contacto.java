@@ -37,4 +37,9 @@ public class Contacto {
     public boolean tieneNombre(String nombre) {
         return (this.nombre.equals(nombre));
     }
+
+    @Override
+    public String toString() {
+        return (this.getNombre() + " -> " + this.getNumero());
+    }
 }

@@ -15,7 +15,7 @@ public final class Main {
 
     private static TelefonoMovil t;
 
-    public static void main() {
+    static void main() {
         boolean seguir = true;
         imprTitulo();
         crearTelefonoMovil();
@@ -67,32 +67,23 @@ public final class Main {
         boolean seguir = true;
         String com;
         imprComandos();
-        com = pedirCom();
+        com = pedirInput();
+        System.out.println();
         switch(com) {
             case OPC_SALIR -> seguir = false;
             case OPC_IMPR -> imprContactos();
             case OPC_ADD -> menuAddContacto();
             case OPC_UPDATE -> menuUpdateContacto();
             case OPC_BORRAR -> menuBorrarContacto();
-            default -> imprErrorCom();
+            case OPC_BUSCAR -> menuBuscarContacto();
+            default -> System.out.println("Error: comando no detectado");
         }
-        System.out.println();
+        if(seguir) {
+            System.out.println();
+            pedirEnter();
+            System.out.println();
+        }
         return seguir;
-    }
-
-    private static String pedirCom() {
-        String com = "";
-        while(com.isBlank()) {
-            System.out.print("> ");
-            com = sc.nextLine().trim();
-        }
-        return com;
-    }
-
-    private static void imprErrorCom() {
-        System.out.println("Error: comando no detectado");
-        pedirEnter();
-        System.out.println();
     }
 
     private static void imprContactos() {
@@ -102,18 +93,107 @@ public final class Main {
             System.out.println("Lista de contactos");
             t.imprContactos();
         }
-        System.out.println();
     }
 
-    private static void menuAddContacto() {}
+    private static void menuAddContacto() {
+        boolean isAdded;
+        String newNombre;
+        String newNumero;
 
-    private static void menuUpdateContacto() {}
+        System.out.println("Añadir contacto");
+        newNombre = pedirInput("Introduzca el nombre:");
+        newNumero = pedirInput("Introduzca el número:");
+        isAdded = t.addContacto(newNombre, newNumero);
 
-    private static void menuBorrarContacto() {}
+        if(isAdded)
+            System.out.println("Contacto añadido");
+        else
+            System.out.println("No se pudo añadir el contacto");
+    }
+
+    private static void menuUpdateContacto() {
+        boolean isUpdated;
+        String nombreUpd;
+        String newNombre;
+        String newNumero;
+        Contacto c;
+        Contacto newC;
+
+        System.out.println("Actualizar contacto");
+        nombreUpd = pedirInput("Introduzca el nombre a buscar:");
+        c = t.queryContacto(nombreUpd);
+        if(c == null) {
+            System.out.println("No se pudo encontrar el contacto");
+            return;
+        }
+
+        newNombre = pedirInput("Introduzca el nuevo nombre:");
+        newNumero = pedirInput("Introduzca el nuevo número:");
+        newC = Contacto.crearContacto(newNombre, newNumero);
+        isUpdated = t.updateContacto(c, newC);
+
+        if(isUpdated)
+            System.out.println("Contacto actualizado");
+        else
+            System.out.println("No se pudo actualizar el contacto");
+    }
+
+    private static void menuBorrarContacto() {
+        boolean estaBorrado;
+        String nombreBorr;
+        Contacto c;
+
+        System.out.println("Borrar contacto");
+        nombreBorr = pedirInput("Introduzca el nombre a buscar:");
+        c = t.queryContacto(nombreBorr);
+        if(c == null) {
+            System.out.println("No se pudo encontrar el contacto");
+            return;
+        }
+        estaBorrado = t.borrarContacto(c);
+
+        if(estaBorrado)
+            System.out.println("Contacto borrado");
+        else
+            System.out.println("No se pudo borrar el contacto");
+    }
+
+    private static void menuBuscarContacto() {
+        String nombreBorr;
+        Contacto c;
+
+        nombreBorr = pedirInput("Introduzca el nombre a buscar:");
+        c = t.queryContacto(nombreBorr);
+        if(c == null)
+            System.out.println("No se pudo encontrar el contacto");
+        else {
+            System.out.println("Contacto encontrado");
+            System.out.println(c);
+        }
+    }
 
     private static void imprSalir() {
         System.out.println("Saliendo del programa...");
         System.out.println();
+    }
+
+    private static String pedirInput(String msg) {
+        String in = "";
+        System.out.println(msg);
+        while(in.isBlank()) {
+            System.out.print("> ");
+            in = sc.nextLine().trim();
+        }
+        return in;
+    }
+
+    private static String pedirInput() {
+        String in = "";
+        while(in.isBlank()) {
+            System.out.print("> ");
+            in = sc.nextLine().trim();
+        }
+        return in;
     }
 
     private static void pedirEnter() {
