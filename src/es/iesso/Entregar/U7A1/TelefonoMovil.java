@@ -49,29 +49,15 @@ public class TelefonoMovil {
             return false;
     }
 
-    public boolean updateContacto(
-            Contacto oldC, String newNombre, String newNumero) {
-        if(existeContacto(oldC)) {
-            borrarContacto(oldC);
-            addContacto(Contacto.crearContacto(newNombre, newNumero));
-            return true;
-        }
-        else
-            return false;
-    }
-
     public boolean updateContacto(Contacto oldC, Contacto newC) {
         if(existeContacto(oldC)) {
             borrarContacto(oldC);
-            addContacto(newC);
-            return true;
+            if(noExisteContacto(newC)) {
+                addContacto(newC);
+                return true;
+            }
         }
-        else
-            return false;
-    }
-
-    public boolean borrarContacto(int index) {
-        return borrarContacto(buscarContacto(index));
+        return false;
     }
 
     public boolean borrarContacto(Contacto c) {
