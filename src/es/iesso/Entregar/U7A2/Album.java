@@ -54,18 +54,18 @@ public class Album {
                         return playlist.add(cBusc);
         }
 
-        public ArrayList<String> toArrayListString() {
-                ArrayList<String> l = new ArrayList<>();
-                for(Cancion cancion : canciones)
-                        l.add(cancion.toString());
-                return l;
-        }
-
         private Cancion findCancion(String titulo) {
                 Cancion cBusc = null;
                 for(Cancion c : canciones)
                         if(c.getTitulo().equals(titulo))
                                 cBusc = c;
                 return cBusc;
+        }
+
+        public ArrayList<String> toArrayListString() {
+                ArrayList<String> l = new ArrayList<>();
+                for(Cancion cancion : canciones)
+                        l.add(cancion.toString());
+                return l;
         }
 }

@@ -6,23 +6,30 @@ public class Main {
 
         private static final Scanner sc = new Scanner(System.in);
 
-        private static Cancion cActual = null;
         private static ArrayList<Album> biblioteca;
         private static LinkedList<Cancion> playlist;
         private static ListIterator<Cancion> repro;
-        private static int dirRepro;
+        private static String cActual;
+        private static int dirRepro = 0;
 
         static void main() {
                 boolean seguir = true;
-                inicAlbumes();
-                playlist = new LinkedList<>();
-                inicPlaylist();
-                repro = playlist.listIterator();
-                imprTitulo();
-                imprAlbumes();
+                inicializar();
+                imprInicio();
                 while(seguir)
                         seguir = ejecBucleMenu();
                 imprSalir();
+        }
+
+        private static void inicializar() {
+                inicAlbumes();
+                inicPlaylist();
+                repro = playlist.listIterator();
+        }
+
+        private static void imprInicio() {
+                imprTitulo();
+                imprAlbumes();
         }
 
         private static boolean ejecBucleMenu() {
@@ -37,6 +44,7 @@ public class Main {
                         case "2" -> menuAnterior();
                         case "3" -> menuRepetirCancion();
                         case "4" -> menuImprPlaylist();
+                        case "5" -> menuBorrarCancion();
                         default -> System.out.println("Error: comando no detectado");
                 }
                 if(seguir) {
@@ -46,30 +54,75 @@ public class Main {
                 return seguir;
         }
 
-        private static void menuSiguiente() {
-                if(dirRepro == -1)
-                        repro.next();
-                if(repro.hasNext()) {
-                        cActual = repro.next();
-                        reproducir(cActual);
-                        dirRepro = 1;
+        private static void menuBorrarCancion() {
+                int n;
+                String tC;
+                System.out.println("Nº. de canción a borrar de la playlist:");
+                n = pedirInt();
+                System.out.println();
+                if(n > 0 && n <= playlist.size()) {
+                        tC = borrarCancion(n - 1);
+                        System.out.println("(\"" + tC + "\" eliminada de la playlist)");
                 } else
-                        System.out.println("No hay canción siguiente");
+                        System.out.println("(Canción no encontrada)");
+        }
+
+        private static void menuSiguiente() {
+                playSiguiente();
         }
 
         private static void menuAnterior() {
-                if(dirRepro == 1)
+                playAnterior();
+        }
+
+        private static void playSiguiente() {
+                if(!repro.hasNext()) {
+                        System.out.println("(No hay canción siguiente)");
+                        return;
+                }
+                if(dirRepro != 1) {
+                        repro.next();
+                        dirRepro = 1;
+                }
+                cActual = repro.next().toString();
+                imprPlay(cActual);
+        }
+
+        private static void playAnterior() {
+                if(!repro.hasPrevious()) {
+                        System.out.println("(No hay canción anterior)");
+                        return;
+                }
+                if(dirRepro != -1) {
                         repro.previous();
-                if(repro.hasPrevious()) {
-                        cActual = repro.previous();
-                        reproducir(cActual);
                         dirRepro = -1;
-                } else
-                        System.out.println("No hay canción anterior");
+                }
+                cActual = repro.previous().toString();
+                imprPlay(cActual);
         }
 
         private static void menuRepetirCancion() {
-                System.out.println(cActual);
+                imprPlay(cActual);
+        }
+
+        private static String borrarCancion(int n) {
+                String tC;
+                int i;
+                tC = playlist.get(n).getTitulo();
+                repro = null;
+                playlist.remove(n);
+                if(n > 0)
+                        i = n - 1;
+                else
+                        i = 0;
+                repro = playlist.listIterator(i);
+                dirRepro = -1;
+                cActual = playlist.get(i).toString();
+                return tC;
+        }
+
+        private static void imprPlay(String c) {
+                System.out.println("Reproduciendo " + c);
         }
 
         private static void menuImprPlaylist() {
@@ -77,15 +130,24 @@ public class Main {
         }
 
         private static void imprPlaylist() {
-                int i = 1;
-                Iterator<Cancion> ipl = playlist.iterator();
+                ListIterator<Cancion> ipl = playlist.listIterator();
                 System.out.println("Playlist:");
                 if(playlist.isEmpty())
                         System.out.println("(vacía)");
-                while(ipl.hasNext()) {
+                while(ipl.hasNext())
                         System.out.println(". " + ipl.next());
-                        i++;
+        }
+
+        private static int pedirInt() {
+                int ip = 0;
+                System.out.println();
+                while(ip <= 0) {
+                        System.out.print("> ");
+                        try {
+                                ip = Integer.parseInt(sc.nextLine().trim());
+                        } catch(NumberFormatException _) {}
                 }
+                return ip;
         }
 
         private static String pedirInput() {
@@ -96,10 +158,6 @@ public class Main {
                         in = sc.nextLine().trim();
                 }
                 return in;
-        }
-
-        private static void reproducir(Cancion c) {
-                System.out.println("Reproduciendo " + c);
         }
 
         private static void pedirEnter() {
@@ -115,15 +173,13 @@ public class Main {
         }
 
         private static void imprAlbumes() {
-                System.out.println();
-                //imprAlbum();
-                // TODO
+                for(Album a : biblioteca)
+                        imprAlbum(a);
         }
 
         private static void imprAlbum(Album a) {
-                ArrayList<String> ls;
-                System.out.println();
-                // TODO
+               for(String i : a.toArrayListString())
+                       System.out.println(i);
         }
 
         private static void imprComandos() {
@@ -134,6 +190,7 @@ public class Main {
                 System.out.println("2. Anterior canción");
                 System.out.println("3. Reproducir de nuevo");
                 System.out.println("4. Mostrar playlist");
+                System.out.println("5. Borrar canción de la playlist");
         }
 
         private static void imprSalir() {
@@ -165,6 +222,8 @@ public class Main {
         private static void inicPlaylist() {
                 Album a1 = biblioteca.get(0);
                 Album a2 = biblioteca.get(1);
+
+                playlist = new LinkedList<>();
 
                 a1.addToPlaylist(0, playlist);
                 a1.addToPlaylist(1, playlist);
