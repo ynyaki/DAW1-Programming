@@ -3,7 +3,11 @@ package es.iesso.EjsClase.Ficheros.FEjercicios1;
 import es.iesso.Impresora;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public abstract class UFA1 extends Impresora {
 
@@ -38,6 +42,10 @@ public abstract class UFA1 extends Impresora {
             imprttl(TITULO_EJ + n);
 
         ej(n);
+        pedirEnter();
+    }
+
+    private static void pedirEnter() {
         linea();
         impr(COM_ENTRAR);
         sc.nextLine();
@@ -72,7 +80,7 @@ public abstract class UFA1 extends Impresora {
         if(pr == null)
             return;
 
-        for(int i = 1; i <= 200; i++) {
+        for(int i = 1; i <= 100; i++) {
             pr.println(i);
         }
         imprln("FIN");
@@ -145,23 +153,212 @@ public abstract class UFA1 extends Impresora {
     }
 
     private static void ej4() {
-        // TODO Por hacer
+        BufferedReader br;
+        PrintWriter pw;
+        String line;
+        ArrayList<String> p = new ArrayList<>();
+        String file = PATH + "texto1.txt";
+
+        // 1. Escribir un texto
+
+        pw = setInput(new File(file));
+        if(pw == null)
+            return;
+
+        pw.println("Este texto está escrito");
+        pw.println("con mucha pasión.");
+        pw.close();
+        imprln("Se ha escrito en el archivo.");
+
+        // 2. Leer y almacenar el texto
+
+        br = setOutput(new File(file));
+        if(br == null)
+            return;
+
+        try {
+            while((line = br.readLine()) != null) {
+                line = line.toUpperCase().replaceAll(" ", "");
+                p.add(line);
+            }
+            imprln("Se ha leído el archivo.");
+        } catch(IOException e) {
+            imprln("Error al leer el archivo.");
+        }
+
+        // 3. Escribir el texto transformado
+
+        pw = setInput(new File(file));
+        if(pw == null)
+            return;
+
+        for(String s : p) {
+            pw.println(s);
+        }
+        pw.close();
+        imprln("Se ha vuelto a escribir en el archivo.");
     }
 
     private static void ej5() {
-        // TODO Por hacer
+        boolean hayError;
+        ArrayList<String> p;
+        hayError = crearArchivo5();
+        if(hayError)
+            return;
+        p = leerArchivo5();
+        if(p == null)
+            return;
+        p = modParr5(p);
+        crearNewArchivo5(p);
+    }
+
+    private static boolean crearArchivo5() {
+        String texto = "esto es un texto normal y corriente";
+        PrintWriter in = setInput(new File("texto2.txt"));
+        if(in == null)
+            return true;
+
+        in.println(texto);
+        imprln(texto);
+        in.close();
+        return false;
+    }
+
+    private static ArrayList<String> leerArchivo5() {
+        String line;
+        ArrayList<String> p = new ArrayList<>();
+        BufferedReader out = setOutput(new File("texto2.txt"));
+        if(out == null)
+            return null;
+
+        try {
+            while((line = out.readLine()) != null) {
+                p.add(line);
+            }
+            out.close();
+        } catch(IOException e) {
+            imprln("Error al leer el archivo.");
+        }
+        return p;
+    }
+
+    private static ArrayList<String> modParr5(ArrayList<String> p) {
+        ArrayList<String> newP = new ArrayList<>();
+        for(String s : p) {
+            s = Stream.of(s.split("")).sorted().collect(Collectors.joining()).trim();
+            newP.add(s);
+        }
+        return newP;
+    }
+
+    private static boolean crearNewArchivo5(ArrayList<String> p) {
+        PrintWriter in = setInput(new File("texto2_new.txt"));
+        if(in == null)
+            return true;
+
+        for(String s : p) {
+            in.println(s);
+            imprln(s);
+        }
+        return false;
     }
 
     private static void ej6() {
-        // TODO Por hacer
+        crearArchivo6();
+        leerArchivo6();
+    }
+
+    private static void crearArchivo6() {
+        String texto = "esto también es un texto normal y corriente1!1!!";
+        PrintWriter in = setInput(new File("texto3.txt"));
+        if(in == null)
+            return;
+
+        in.println(texto);
+        imprln(texto);
+        in.close();
+    }
+
+    private static void leerArchivo6() {
+        String line;
+        int num = 0;
+        int vow = 0;
+        int cons = 0;
+        BufferedReader out = setOutput(new File("texto3.txt"));
+        if(out == null)
+            return;
+
+        try {
+            while((line = out.readLine()) != null) {
+                line = line.replaceAll(" ", "").toLowerCase();
+                for(char c : line.toCharArray()) {
+                    if(c >= '0' && c <= '9') {
+                        num++;
+                    } else if(c >= 'a' && c <= 'z') {
+                        if(c == 'a' || c == 'i' || c == 'u'
+                                || c == 'e' || c == 'o') {
+                            vow++;
+                        } else {
+                            cons++;
+                        }
+                    }
+                }
+            }
+            out.close();
+            imprln("Números: " + num);
+            imprln("Vocales: " + vow);
+            imprln("Consonantes: " + cons);
+        } catch(IOException e) {
+            imprln("Error al leer el archivo.");
+        }
+        return;
     }
 
     private static void ej7() {
-        // TODO Por hacer
+        String fName = "texto4.txt";
+        mostrarFichero(fName);
+    }
+
+    private static boolean mostrarFichero(String fileName) {
+        String line;
+        BufferedReader r = setOutput(new File(PATH + fileName));
+        if(r == null)
+            return false;
+        try {
+            while((line = r.readLine()) != null) {
+                imprln(line);
+            }
+        } catch(IOException e) {
+            imprln("Error al leer el archivo.");
+        }
+        return true;
     }
 
     private static void ej8() {
-        // TODO Por hacer
+        String fName = "textoEJ8.txt";
+        String word = "de";
+        System.out.println("Simulación de: $ java mostrarFichero "
+                        + fName + " " + word);
+
+        String line;
+        StringTokenizer st;
+        int count = 0;
+        BufferedReader r = setOutput(new File(PATH + fName));
+
+        try {
+            while((line = r.readLine()) != null) {
+                st = new StringTokenizer(line, " ,.;");
+                while(st.hasMoreTokens()) {
+                    if(st.nextToken().equals(word)) {
+                        count++;
+                    }
+                }
+            }
+            System.out.println("Veces que aparece \"" + word + "\": " + count);
+            r.close();
+        } catch(IOException _) {
+            imprln("Error al leer el archivo.");
+        }
     }
 
     private static void ej9() {
