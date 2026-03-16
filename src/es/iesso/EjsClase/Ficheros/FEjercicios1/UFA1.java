@@ -214,7 +214,7 @@ public abstract class UFA1 extends Impresora {
 
     private static boolean crearArchivo5() {
         String texto = "esto es un texto normal y corriente";
-        PrintWriter in = setInput(new File("texto2.txt"));
+        PrintWriter in = setInput(new File(PATH + "texto2.txt"));
         if(in == null)
             return true;
 
@@ -227,7 +227,7 @@ public abstract class UFA1 extends Impresora {
     private static ArrayList<String> leerArchivo5() {
         String line;
         ArrayList<String> p = new ArrayList<>();
-        BufferedReader out = setOutput(new File("texto2.txt"));
+        BufferedReader out = setOutput(new File(PATH + "texto2.txt"));
         if(out == null)
             return null;
 
@@ -270,7 +270,7 @@ public abstract class UFA1 extends Impresora {
 
     private static void crearArchivo6() {
         String texto = "esto también es un texto normal y corriente1!1!!";
-        PrintWriter in = setInput(new File("texto3.txt"));
+        PrintWriter in = setInput(new File(PATH + "texto3.txt"));
         if(in == null)
             return;
 
@@ -335,7 +335,7 @@ public abstract class UFA1 extends Impresora {
     }
 
     private static void ej8() {
-        String fName = "textoEJ8.txt";
+        String fName = "quijote.txt";
         String word = "de";
         System.out.println("Simulación de: $ java mostrarFichero "
                         + fName + " " + word);
